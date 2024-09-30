@@ -1,4 +1,4 @@
-#include"task5.h"
+#include"task6.h"
 
 int main (void)
 {
@@ -33,7 +33,7 @@ int main (void)
     int *tmparr2 = (int*)malloc(size2 * sizeof(int));
     int *arr2 = tmparr2;
 
-    int *tmparr3 = (int*)malloc((size1+size2)*sizeof(int));
+    int *tmparr3 = (int*)malloc((size1)*sizeof(int));
     int *arr3 = tmparr3;
 
     for(int i=0; i<size1; i++, arr1++)
@@ -48,11 +48,12 @@ int main (void)
         *arr2=y;
     }
 
-
     arr1=tmparr1;
     arr2 = tmparr2;
 
-    int size3 = task5(arr1, size1, arr2, size2, arr3);
+    int size3 = task6(arr1, size1, arr2, size2, arr3);
+
+    arr3 = tmparr3;
     
     for(int i=0; i<size3; i++, arr3++)
     {
