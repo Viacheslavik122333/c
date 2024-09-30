@@ -12,7 +12,7 @@ int main (void) //все для любимой старосты 108 группы
         return -1;
     }
     
-    if (fscanf(fin, "%d %d", &x1, &x2) != 1)
+    if (!fscanf(fin, "%d %d", &x1, &x2))
     {
         fprintf(stderr, "Empty file\n");
         fclose(fin);

@@ -37,7 +37,10 @@ double task27(FILE *fin)
         allcount++;
         sr+=count*num;
     }
-    
+    if(allcount==0)
+    {
+        allcount=1;
+    }
     fclose(fin);
     return sr/allcount;
 }
