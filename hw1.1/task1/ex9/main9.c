@@ -1,6 +1,6 @@
 #include"task9.h"
 
-int main (void)
+int main (void) //все для любимой старосты 108 группы
 {
     int x1, x2;
     int c1, c2, c3, b;
