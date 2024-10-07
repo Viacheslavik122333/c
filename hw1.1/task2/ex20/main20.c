@@ -1,9 +1,10 @@
-#include"task4.h"
+#include"task20.h"
 
 int main (void)
 {
-    FILE* fin1 = fopen("inputA.txt", "r");
-    FILE* fin2 = fopen("inputB.txt", "r");
+    FILE* fin1 = fopen("input1.txt", "r");
+    FILE* fin2 = fopen("input2.txt", "r");
+    FILE* fout = fopen("output.txt", "w");
     int a, b, size1=0, size2=0, x, y;
 
     if (!fin1 && !fin2)
@@ -23,11 +24,17 @@ int main (void)
     }
     rewind(fin2);
 
+    // printf("%d ", size1);
+    // printf("%d\n", size2);
+
     int *tmparr1 = (int*)malloc(size1 * sizeof(int));
     int *arr1 = tmparr1;
 
     int *tmparr2 = (int*)malloc(size2 * sizeof(int));
     int *arr2 = tmparr2;
+
+    int *tmparr3 = (int*)malloc((size1+size2)*sizeof(int));
+    int *arr3 = tmparr3;
 
     for(int i=0; i<size1; i++, arr1++)
     {
@@ -44,24 +51,18 @@ int main (void)
     arr1=tmparr1;
     arr2 = tmparr2;
 
-    if(task4(arr1, size1, arr2, size2) && task4(arr2, size2, arr1, size1))
+    task20(arr1, size1, arr2, size2, arr3);
+    
+    for(int i=0; i<size1+size2; i++, arr3++)
     {
-        printf("А = В\n");
-    }
-    else if(task4(arr1, size1, arr2, size2))
-    {
-        printf("А вложен в В\n");
-    }
-    else if (task4(arr2, size2, arr1, size1))
-    {
-        printf("В вложен в А\n");
-    }
-    else 
-    {
-        printf("Массивы вообще разные :(\n");
+        fprintf(fout, "%d ", *arr3);
     }
 
     free (tmparr1);
     free (tmparr2);
+    free (tmparr3);
+    fclose(fin1);
+    fclose(fin2);
+    fclose(fout);
     return 0;
 }

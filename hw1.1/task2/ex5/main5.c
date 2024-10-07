@@ -63,5 +63,8 @@ int main (void)
     free (tmparr1);
     free (tmparr2);
     free (tmparr3);
+    fclose(fin1);
+    fclose(fin2);
+    fclose(fout);
     return 0;
 }
