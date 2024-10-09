@@ -5,6 +5,10 @@ int main (void)
     FILE* fin1 = fopen("inputA.txt", "r");
     FILE* fin2 = fopen("inputB.txt", "r");
     int a, b, size1=0, size2=0, x, y;
+    int *tmparr1;
+    int *tmparr2;
+    int *arr1;
+    int *arr2;
 
     if (!fin1 && !fin2)
     {
@@ -23,11 +27,11 @@ int main (void)
     }
     rewind(fin2);
 
-    int *tmparr1 = (int*)malloc(size1 * sizeof(int));
-    int *arr1 = tmparr1;
+    tmparr1 = (int*)malloc(size1 * sizeof(int));
+    arr1 = tmparr1;
 
-    int *tmparr2 = (int*)malloc(size2 * sizeof(int));
-    int *arr2 = tmparr2;
+    tmparr2 = (int*)malloc(size2 * sizeof(int));
+    arr2 = tmparr2;
 
     for(int i=0; i<size1; i++, arr1++)
     {
@@ -63,5 +67,7 @@ int main (void)
 
     free (tmparr1);
     free (tmparr2);
+    fclose(fin1);
+    fclose(fin2);
     return 0;
 }

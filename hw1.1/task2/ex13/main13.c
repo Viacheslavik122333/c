@@ -6,6 +6,8 @@ int main (void)
     FILE* fout = fopen("output.txt", "w");
     double a, x; 
     int size=0;
+    double *tmparr;
+    double *arr;
 
     if (!fin)
     {

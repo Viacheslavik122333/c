@@ -5,6 +5,8 @@ int main (void)
     FILE* fin = fopen("input.txt", "r");
     FILE* fout = fopen("output.txt", "w");
     int a, size=0, x, res;
+    int *tmparr;
+    int *arr;
 
     if (!fin)
     {
@@ -21,8 +23,8 @@ int main (void)
     // printf("%d ", size1);
     // printf("%d\n", size2);
 
-    int *tmparr = (int*)malloc(size * sizeof(int));
-    int *arr = tmparr;
+    tmparr = (int*)malloc(size * sizeof(int));
+    arr = tmparr;
 
 
     for(int i=0; i<size; i++, arr++)
@@ -37,5 +39,7 @@ int main (void)
     fprintf(fout, "%d", res);
 
     free (tmparr);
+    fclose(fin);
+    fclose(fout);
     return 0;
 }

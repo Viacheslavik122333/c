@@ -5,6 +5,8 @@ int main (void)
     FILE* fin = fopen("input.txt", "r");
     FILE* fout = fopen("output.txt", "w");
     int a, size=0, x, size2=0;
+    int *tmparr;
+    int *arr;
 
     if (!fin)
     {
@@ -18,8 +20,8 @@ int main (void)
     }
     rewind(fin);
 
-    int *tmparr = (int*)malloc(size * sizeof(int));
-    int *arr = tmparr;
+    tmparr = (int*)malloc(size * sizeof(int));
+    arr = tmparr;
 
 
     for(int i=0; i<size; i++, arr++)

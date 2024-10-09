@@ -5,19 +5,15 @@ int main (void)
     FILE* fin = fopen("input.txt", "r");
     FILE* fout = fopen("output.txt", "w");
     int a, size=0, x;
+    int *tmparr;
+    int *arr;
+    
     if (!fin)
     {
         fprintf(stderr, "Error opening data file\n");
         return -1;
     }
     
-    // if (fscanf(fin, "%d", &x) != 1)
-    // {
-    //     fprintf(stderr, "Empty file\n");
-    //     fclose(fin);
-    //     return -1;
-    // }
-    // rewind(fin);
 
     while (fscanf(fin, "%d", &a) == 1)
     {
@@ -25,16 +21,15 @@ int main (void)
     }
     rewind(fin);
 
-    int *tmparr = (int*)malloc(size * sizeof(int));
-    int *arr = tmparr;
+    tmparr = (int*)malloc(size * sizeof(int));
+    arr = tmparr;
+
     for(int i=0; i<size; i++, arr++)
     {
         fscanf(fin, "%d", &x);
         *arr=x;
     }
     arr = tmparr;
-
-    //printf("%d\n", size);
 
     task2(arr, size); // функция
 
@@ -43,7 +38,6 @@ int main (void)
         fprintf(fout, "%d ", *arr);
     }
     free (tmparr);
-    
-    
+    fclose(fin);
     return 0;
 }

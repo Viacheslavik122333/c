@@ -6,6 +6,8 @@ int main (void)
     FILE* fout = fopen("output.txt", "w");
     int x, a, b; 
     int size=0;
+    int *tmparr;
+    int *arr;
 
     if (!fin)
     {
@@ -23,8 +25,8 @@ int main (void)
 
     scanf("%d", &x);
 
-    int *tmparr = (int*)malloc(size * sizeof(int));
-    int *arr = tmparr;
+    tmparr = (int*)malloc(size * sizeof(int));
+    arr = tmparr;
 
     for(int i=0; i<size-1; i++, arr++)
     {

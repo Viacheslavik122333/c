@@ -19,7 +19,7 @@ void task14(double *arr, int size)
                 {
                     tmparr++;
                     j++;
-                } // 5 6 6 4
+                }
                 if(tmparr == Tmparr + (size-1) && (*tmparr - *(tmparr-1))<1e-6 && (*tmparr - *(tmparr-1))>-(1e-6))
                 {
                     psum = (tmp)/2;

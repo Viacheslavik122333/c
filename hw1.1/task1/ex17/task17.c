@@ -22,6 +22,7 @@ int task17(FILE *fin)
         }
         tmp=b;
     }
+    
     fclose(fin);
     return quantity1;
 }
