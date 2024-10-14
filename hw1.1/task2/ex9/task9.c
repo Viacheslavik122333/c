@@ -14,7 +14,6 @@ int task9(int *arr, int size)
     }    
     return (size-count);
 }
-// 6 4 4 4 5 10
 
 void sdvig(int *arr, int N)
 {
