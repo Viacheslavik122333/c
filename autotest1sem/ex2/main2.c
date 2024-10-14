@@ -9,7 +9,11 @@ void swap(int *a, int *b);
 
 int main(void)
 {
-    int x;
+    int x, sizea, sizeb;
+    int *tmparra;
+    int *arra;
+    int *tmparrb;
+    int *arrb;
     FILE* fina = fopen("ina.txt", "r");
     FILE* finb = fopen("inb.txt", "r");
     FILE* fout = fopen("output.txt", "w");
@@ -17,8 +21,8 @@ int main(void)
     if(!finb){fclose(fina); return -1;}
     if(!fout){fclose(fina);fclose(finb); return -1;}
     
-    int sizea = size(fina);
-    int sizeb = size(finb);
+    sizea = size(fina);
+    sizeb = size(finb);
     if(sizea == 0 || sizeb == 0)
     {
         fclose(fina);fclose(finb); fclose(fout); return -1;
@@ -27,10 +31,10 @@ int main(void)
     rewind(fina);
     rewind(finb);
 
-    int *tmparra = (int*)malloc(sizea * sizeof(int));
-    int *arra = tmparra;
-    int *tmparrb = (int*)malloc(sizeb * sizeof(int));
-    int *arrb = tmparrb;
+    tmparra = (int*)malloc(sizea * sizeof(int));
+    arra = tmparra;
+    tmparrb = (int*)malloc(sizeb * sizeof(int));
+    arrb = tmparrb;
 
     for(int i=0; i<sizea; i++)
     {
@@ -70,8 +74,9 @@ int main(void)
 
 int task2(int *arra, int a, int *arrb, int b)
 {
-    int min = (a<b) ? a : b;
+    int c;
     int count1=0, count2=0;
+    int min = (a<b) ? a : b;
     for(int i=0; i<min; i++)
     {
         if(*arra < *arrb)
@@ -83,7 +88,7 @@ int task2(int *arra, int a, int *arrb, int b)
             count2++;
         }
     }
-    int c = (count1>count2) ? 1 : -1;
+    c = (count1>count2) ? 1 : -1;
     return c;
 }
 
@@ -99,11 +104,11 @@ int size(FILE*f)
 
 void rsort(int a[], int N)
 {
-    for(int i=0; i<N; i++)
+    for(int i=1; i<N; i++)
     {
-        for(int j=i; j>0 && a[j]<a[j-1]; j++)
+        for(int j=i; j>0 && a[j-1]<a[j]; j--)
         {
-            swap(&a[j], &a[j-1]);
+            swap(&a[j-1], &a[j]);
         }
     }
 }

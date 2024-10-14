@@ -9,6 +9,10 @@ int task3(int *arra, int M, int maxA, int *arrb, int N, int minB);
 int main (void)
 {
     int M=0, N=0, x, maxA, minB, res;
+    int *tmparra;
+    int *arra;
+    int *tmparrb;
+    int *arrb;
     FILE *fina = fopen("ina.txt", "r");
     FILE *finb = fopen("inb.txt", "r");
     FILE *fout = fopen("output.txt", "w");
@@ -20,10 +24,10 @@ int main (void)
     rewind(fina);
     rewind(finb);
     if(M==0 || N==0){fclose(fina); fclose(finb); fclose(fout);return -1;}
-    int *tmparra = (int*)malloc(M * sizeof(int));
-    int *arra = tmparra;
-    int *tmparrb = (int*)malloc(N * sizeof(int));
-    int *arrb = tmparrb;
+    tmparra = (int*)malloc(M * sizeof(int));
+    arra = tmparra;
+    tmparrb = (int*)malloc(N * sizeof(int));
+    arrb = tmparrb;
      
     vvod(fina, arra, M);
     vvod(finb, arrb, N);

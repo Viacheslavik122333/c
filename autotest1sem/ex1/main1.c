@@ -9,28 +9,32 @@ int max(int *ptr, int N);
 
 int main(void)
 {
+    int a=0, b=4;
+    int sizeA, sizeB;
+    int *tmparrA;
+    int *arrA;
+    int *tmparrB;
+    int *arrB;
     FILE* finA = fopen("ina.txt", "r");
     FILE* finB = fopen("inb.txt", "r");
     FILE* fout = fopen("output.txt", "w");
     if(!finA){return -1;}
     if(!finB){fclose(finA); return -1;}
     if(!fout){fclose(finA);fclose(finB); return -1;}
-    int sizeA = size(finA);
-    int sizeB = size(finB);
+    sizeA = size(finA);
+    sizeB = size(finB);
     rewind(finA);
     rewind(finB);
-    printf("%d %d\n", sizeA, sizeB);
-    int a=0, b=4;
     if(sizeA == 0 || sizeB == 0)
     {
        fclose(finA); fclose(finB); fclose(fout); return -1;
     }
 
-    int *tmparrA = (int*)malloc(sizeA * sizeof(int));
-    int *arrA = tmparrA;
+    tmparrA = (int*)malloc(sizeA * sizeof(int));
+    arrA = tmparrA;
 
-    int *tmparrB = (int*)malloc(sizeB * sizeof(int));
-    int *arrB = tmparrB;
+    tmparrB = (int*)malloc(sizeB * sizeof(int));
+    arrB = tmparrB;
 
     for(int i=0; i<sizeA; i++)
     {
@@ -78,7 +82,9 @@ int main(void)
 
     free(tmparrA);
     free(tmparrB);
-    fclose(finA); fclose(finB); fclose(fout);
+    fclose(finA); 
+    fclose(finB); 
+    fclose(fout);
 }
 
 int size(FILE*fin)
@@ -87,7 +93,6 @@ int size(FILE*fin)
     while(fscanf(fin, "%d", &a)==1)
     {
         count++;
-        
     }
     return count;
 }

@@ -8,6 +8,10 @@ void swap(int *a, int *b);
 int main(void)
 {
     int x, M=0, N=0;
+    int *tmparra;
+    int *arra;
+    int *tmparrb;
+    int *arrb;
     FILE * fina = fopen("ina.txt", "r");
     FILE * finb = fopen("inb.txt", "r");
     FILE * fout = fopen("output.txt", "w");
@@ -28,10 +32,10 @@ int main(void)
         return 0;
     }
 
-    int *tmparra = (int*)malloc(M * sizeof(int));
-    int *arra=tmparra;
-    int *tmparrb = (int*)malloc(N * sizeof(int));
-    int *arrb=tmparrb;
+    tmparra = (int*)malloc(M * sizeof(int));
+    arra=tmparra;
+    tmparrb = (int*)malloc(N * sizeof(int));
+    arrb=tmparrb;
 
     for(int i=0; i<M; i++, arra++)
     {
