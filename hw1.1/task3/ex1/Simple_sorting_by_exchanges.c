@@ -36,12 +36,16 @@ void Simple_sorting_by_exchanges_2(double a[], size_t size, int (*cmp_2)(double,
 }
 
 
-
-int cmp_3(const void * a, const void * b)
+int cmp_3(const void *a, const void *b)
 {
-    if((*(double*)a-*(double*)b)>1e-12){return 1;}
-    if((*(double*)a-*(double*)b)<-1e-12){return -1;}
-    return 0;
+    const double *ad, *bd;
+    
+    ad = (const double*)a;
+    bd = (const double*)b;
+   
+    if ((*ad - *bd)<-1e-12) {return -1;}   
+    else if ((*ad - *bd)>1e-12) {return 1;}   
+    else {return 0;}   
 }
 void swap(void * x, void * y, size_t size)	
 {		      
@@ -79,8 +83,8 @@ int cmp_qsort(const void *a, const void *b)
     ad = (const double*)a;
     bd = (const double*)b;
    
-    if (*ad < *bd) {return -1;}   
-    else if (*ad > *bd) {return 1;}   
+    if ((*ad - *bd)<-1e-12) {return -1;}   
+    else if ((*ad - *bd)>1e-12) {return 1;}   
     else {return 0;}   
 }
 
