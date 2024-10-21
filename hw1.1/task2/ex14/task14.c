@@ -5,7 +5,7 @@ void task14(double *arr, int size)
     double psum=0, tmp=0;
     double *tmparr = arr;
     double *Tmparr = arr;
-    int count=1, count2=0, j=0; 
+    int count=1, count2=0, j=0;
     arr++;
     for (int i=0; i<size-1; i++, arr++)
     {
@@ -49,6 +49,7 @@ void task14(double *arr, int size)
             count=1;
         }
     }
+    
 }
 
 
