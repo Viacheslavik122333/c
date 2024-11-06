@@ -4,6 +4,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-bool task1(int *arr, const size_t size);
+bool task1(int *arr, int size);
 
 #endif

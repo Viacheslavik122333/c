@@ -10,8 +10,7 @@ int main(void)
     clock_t TimeStart, TimeStop;
     double cpu_time_used;
 
-    int quantity[5] = {1e4, 2*1e4, 4*1e4, 8*1e4, 1e5};
-    //  int quantity[5] = {10, 10, 10, 10, 10};
+    int quantity[5] = {1e4, 2*1e4, 4*1e4, 8*1e4, 1e5}; // длины массива
 
     double res[20];
     int count=0;
@@ -23,7 +22,7 @@ int main(void)
     {
         array = (double*)malloc(quantity[r] * sizeof(double));
 
-        for(int i = 0; i<quantity[r]; i++){array[i] = (((double)rand())/((double)(RAND_MAX))) * 2*G - G;}
+        for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
         Simple_sorting_by_exchanges_1(array, quantity[r]); // 1 реализация сортировки
@@ -33,14 +32,14 @@ int main(void)
         res[count] = cpu_time_used;
         count++;
 
-        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}}
+        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}} // Проверка сортировки
     
         if(tmpcount == quantity[r]-1){examination++;}
         tmpcount=0;
 
         free(array);
     }
-    if(examination != 5){fprintf(stderr, "Sort1 - didn't sort the array :("); return 0;} // Проверка 1 реализации сортировки
+    if(examination != 5){fprintf(stderr, "Sort1 - didn't sort the array :("); return 0;} // Проверка 1 реализации
 
     //
 
@@ -49,7 +48,7 @@ int main(void)
         tmparray = (double*)malloc(quantity[r] * sizeof(double));
         array = tmparray;
 
-        for(int i = 0; i<quantity[r]; i++){array[i] = (((double)rand())/((double)(RAND_MAX))) * 2*G - G;}
+        for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
         Simple_sorting_by_exchanges_2(array, quantity[r], cmp_2); // 2 реализация сортировки
@@ -59,7 +58,7 @@ int main(void)
         res[count] = cpu_time_used;
         count++;
 
-        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}}
+        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}} // Проверка сортировки
     
         if(tmpcount == quantity[r]-1){examination++;}
         tmpcount=0;
@@ -68,13 +67,13 @@ int main(void)
     }
     if(examination != 10){fprintf(stderr, "Sort2 - didn't sort the array :("); return 0;} // Проверка 2 реализации сортировки
 
-    
+    //
 
     for (int r=0; r<5; r++)
     {
         array = (double*)malloc(quantity[r] * sizeof(double));
 
-        for(int i = 0; i<quantity[r]; i++){array[i] = (((double)rand())/((double)(RAND_MAX))) * 2*G - G;}
+        for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
         Simple_sorting_by_exchanges_3(array, quantity[r], sizeof(double), cmp_3); // 3 реализация сортировки
@@ -84,7 +83,7 @@ int main(void)
         res[count] = cpu_time_used;
         count++;
 
-        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}}
+        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}} // Проверка сортировки
     
         if(tmpcount == quantity[r]-1){examination++;}
         tmpcount=0;
@@ -99,7 +98,7 @@ int main(void)
     {
         array = (double*)malloc(quantity[r] * sizeof(double));
 
-        for(int i = 0; i<quantity[r]; i++){array[i] = (((double)rand())/((double)(RAND_MAX))) * 2*G - G;}
+        for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
         qsort(array, quantity[r], sizeof(double), cmp_qsort); // сортировка qsort
@@ -109,7 +108,7 @@ int main(void)
         res[count] = cpu_time_used;
         count++;
 
-        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}}
+        for(int i = 0; i<quantity[r]-1; i++){if((array[i+1]-array[i])>-1e-6){tmpcount++;}} // Проверка сортировки
     
         if(tmpcount == quantity[r]-1){examination++;}
         tmpcount=0;

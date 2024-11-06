@@ -37,5 +37,6 @@ int main (void)
     }
     free (tmparr);
     fclose(fin);
+    
     return 0;
 }
