@@ -1,5 +1,7 @@
 #include"task3.h"
 
+//Молчанов Вячеслав 108
+
 int main(void)
 {
     double G=1e6;
@@ -11,12 +13,14 @@ int main(void)
     double cpu_time_used;
 
     int quantity[5] = {1e4, 2*1e4, 4*1e4, 8*1e4, 1e5}; // колличество элементов в массивах
+    int number;
 
     double res[20];
     int count=0;
     int examination=0;
-
-    srand(time(NULL));
+    
+    scanf("%d", &number); // число для srand
+    srand(number);
 
     for (int r=0; r<5; r++)
     {
@@ -25,7 +29,7 @@ int main(void)
         for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
-        Simple_sorting_by_exchanges_1(array, quantity[r]); // 1 реализация сортировки
+        Sieving_sorting_1(array, quantity[r]); // 1 реализация сортировки
         TimeStop = clock()*1000/CLOCKS_PER_SEC;
         
         cpu_time_used = ((double) (TimeStop - TimeStart))/1000;
@@ -51,7 +55,7 @@ int main(void)
         for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
-        Simple_sorting_by_exchanges_2(array, quantity[r], cmp_2); // 2 реализация сортировки
+        Sieving_sorting_2(array, quantity[r], cmp_2); // 2 реализация сортировки
         TimeStop = clock()*1000/CLOCKS_PER_SEC;
         
         cpu_time_used = ((double) (TimeStop - TimeStart))/1000;
@@ -76,7 +80,7 @@ int main(void)
         for(int i = 0; i<quantity[r]; i++){array[i] = ((rand())/((double)(RAND_MAX))) * 2*G - G;}
 
         TimeStart = clock()*1000/CLOCKS_PER_SEC;
-        Simple_sorting_by_exchanges_3(array, quantity[r], sizeof(double), cmp_3); // 3 реализация сортировки
+        Sieving_sorting_3(array, quantity[r], sizeof(double), cmp_3); // 3 реализация сортировки
         TimeStop = clock()*1000/CLOCKS_PER_SEC;
         
         cpu_time_used = ((double) (TimeStop - TimeStart))/1000;
@@ -120,7 +124,7 @@ int main(void)
     //
 
     tabl(res);
-    if(examination == 20){printf("All arrays are sorted");}
+    if(examination == 20){printf("All arrays are sorted\n");}
     return 0;
  
 }

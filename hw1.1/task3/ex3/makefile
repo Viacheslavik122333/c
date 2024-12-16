@@ -5,8 +5,8 @@ CFLAGS=-c -fstack-protector-all -g -W -Wall -Wextra -Wunused -Wcast-align -Werro
 
 all: app
 
-app: main_slow_sort_3.o Simple_sorting_by_exchanges_3.o table.o
-	$(CC) main_slow_sort_3.o Simple_sorting_by_exchanges_3.o table.o -o app
+app: main_slow_sort_3.o Sieving_sorting_3.o table.o
+	$(CC) main_slow_sort_3.o Sieving_sorting_3.o table.o -o app
 
 main_slow_sort_3.o: main_slow_sort_3.c task3.h
 	$(CC) $(CFLAGS) main_slow_sort_3.c
@@ -14,8 +14,8 @@ main_slow_sort_3.o: main_slow_sort_3.c task3.h
 table.o: table.c task3.h
 	$(CC) $(CFLAGS) table.c
 
-Simple_sorting_by_exchanges_3.o: Simple_sorting_by_exchanges_3.c task3.h
-	$(CC) $(CFLAGS) Simple_sorting_by_exchanges_3.c
+Sieving_sorting_3.o: Sieving_sorting_3.c task3.h
+	$(CC) $(CFLAGS) Sieving_sorting_3.c
 
 cl:
 	rm -rf *.o *.dSYM
