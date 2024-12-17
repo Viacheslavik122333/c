@@ -45,6 +45,25 @@ int main(void)
     return 0;
 }
 
+int task6(int *arra, int *arrb, int min)
+{
+    
+    int res=0;
+    int count = 1;
+    int tmp = mod(*arra, *arrb);
+    arra++; arrb++;
+    for(int i=0; i<min-1; i++, arra++, arrb++)
+    {
+        if(mod(*arra, *arrb)>= tmp)
+        {
+            count++;
+        }
+        tmp = mod(*arra, *arrb);
+    }
+    if(count == min){res = 1;}
+    return res;
+}
+
 void sort(int a[], int k)
 {
     for(int i=1; i<k; i++)
@@ -63,25 +82,7 @@ void swap(int *a, int *b)
     *b = tmp;
 }
 
-int task6(int *arra, int *arrb, int min)
-{
-    
-    int res=0;
-    int count = 1;
-    int tmp = mod(*arra, *arrb);
-    arra++;
-    arrb++;
-    for(int i=0; i<min-1; i++, arra++, arrb++)
-    {
-        if(mod(*arra, *arrb)<= tmp)
-        {
-            count++;
-        }
-        tmp = mod(*arra, *arrb);
-    }
-    if(count == min){res = 1;}
-    return res;
-}
+
 
 int mod(int a, int b)
 {
