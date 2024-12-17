@@ -1,119 +1,67 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-void sort(int a[], int N);
-int task4(int *arra, int M, int *arrb, int N);
-void swap(int *a, int *b);
+int task(int *arra, int M, int *arrb, int N);
+int cmp(const void*a, const void*b);
 
-int main(void)
+int main (void)
 {
-    int x, M=0, N=0;
-    int *tmparra;
-    int *arra;
-    int *tmparrb;
-    int *arrb;
-    FILE * fina = fopen("ina.txt", "r");
-    FILE * finb = fopen("inb.txt", "r");
-    FILE * fout = fopen("output.txt", "w");
+    int n=0, m=0, x;
+    int *a, *b;
+    FILE *fina = fopen("ina.txt", "r");
+    FILE *finb = fopen("inb.txt", "r");
+    FILE *fout = fopen("output.txt", "w");
     if(!fina){return -1;}
     if(!finb){fclose(fina); return -1;}
     if(!fout){fclose(fina); fclose(finb); return -1;}
-    while (fscanf(fina, "%d", &x)==1){M++;}
-    while (fscanf(finb, "%d", &x)==1){N++;}
-
+    while (fscanf(fina, "%d", &x)==1){n++;}
+    while (fscanf(finb, "%d", &x)==1){m++;}
     rewind(fina);
     rewind(finb);
-
-    if(M==0 || N==0)
-    {fclose(fina); fclose(finb); fclose(fout); return -1;}
-    if(M>N)
-    {
-        fprintf(fout, "NO");
-        return 0;
-    }
-
-    tmparra = (int*)malloc(M * sizeof(int));
-    arra=tmparra;
-    tmparrb = (int*)malloc(N * sizeof(int));
-    arrb=tmparrb;
-
-    for(int i=0; i<M; i++, arra++)
-    {
-        fscanf(fina, "%d", &x);
-        *arra=x;
-    }
-    for(int i=0; i<N; i++, arrb++)
-    {
-        fscanf(finb, "%d", &x);
-        *arrb=x;
-    }
-
-    arra=tmparra;
-    arrb=tmparrb;
-
-    sort(arra, M);
-    sort(arrb, N);
-    
-    arra=tmparra;
-    arrb=tmparrb;
-
-    if(task4(arra, M, arrb, N)==1)
-    {
-        fprintf(fout, "YES");
-    }
-    else
-    {
-        fprintf(fout, "NO");
-    }
-
-    free(tmparra);
-    free(tmparrb);
+    if(n==0 || m==0){fclose(fina); fclose(finb); fclose(fout);return -1;}
+    a = (int*)malloc(n * sizeof(int));
+    b = (int*)malloc(m * sizeof(int));
+    for(int i=0; i<n; i++){fscanf(fina, "%d", &x); a[i] = x;}
+    for(int i=0; i<m; i++){fscanf(finb, "%d", &x); b[i] = x;}
+    qsort(a, n, sizeof(int), cmp);
+    qsort(b, m, sizeof(int), cmp);
+    if(task(a, n, b, m)==1){fprintf(fout, "YES");printf("YES");}
+    else{fprintf(fout, "NO");}
+    free(a);
+    free(b);
     fclose(fina); 
     fclose(finb); 
     fclose(fout);
     return 0;
 }
 
-void sort(int a[], int N)
+int cmp(const void*a, const void*b)
 {
-    for(int i=0; i<N; i++)
-    {
-        for(int j=i; j>0 && a[j-1]>a[j]; j--)
-        {
-            swap(&a[j-1], &a[j]);
-        }
-    }
+    const int A = *(const int*)a;
+    const int B = *(const int*)b;
+    if(A>B){return 1;}
+    else if(A<B){return -1;}
+    else {return 0;}
 }
 
-int task4(int *arra, int M, int *arrb, int N)
+int task(int *a, int n, int *b, int m)
 {
-    int k=0, res=1;
-    while(*arra != *arrb)
+    int res=1, k=0;
+    if(n>m){return -1;}
+    for(int g=0; g<m; g++)
     {
-        arrb++;
-        k++;
-    }
-    if(k == N)
-    {
-        res = 0;
-        return res;
-    }
-    for(int i = 0; i<M; i++)
-    {
-        if(*arra != *arrb)
+        if(a[0]==b[g])
         {
-            res = 0;
-            return res;
+            printf("%d %d\n", g, n);
+            for(int i = g; i<n+g; i++, k++)
+            {
+                if(a[k] != b[i])
+                {
+                    res = 0;
+                    break;
+                }
+            }
         }
-        arra++;
-        arrb++;
     }
     return res;
-}
-
-void swap(int *a, int *b)
-{
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
 }

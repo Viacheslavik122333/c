@@ -2,13 +2,12 @@
 #include"stdlib.h"
 
 int cmp(const void*a, const void*b);
-int task3(int *a, int n, int *b, int m);
+int task(int *a, int n, int *b, int m);
 
 int main (void)
 {
     int n=0, m=0, x, res;
-    int *a;
-    int *b;
+    int *a, *b;
     FILE *fina = fopen("ina.txt", "r");
     FILE *finb = fopen("inb.txt", "r");
     FILE *fout = fopen("output.txt", "w");
@@ -22,17 +21,12 @@ int main (void)
     if(n==0 || m==0){fclose(fina); fclose(finb); fclose(fout);return -1;}
     a = (int*)malloc(n * sizeof(int));
     b = (int*)malloc(m * sizeof(int));
-    
     for(int i=0; i<n; i++){fscanf(fina, "%d", &x); a[i] = x;}
     for(int i=0; i<m; i++){fscanf(finb, "%d", &x); b[i] = x;}
-
     qsort(a, n, sizeof(int), cmp);
     qsort(b, m, sizeof(int), cmp);
-    // for(int i=0; i<n; i++){printf("%d ", a[i]);}
-    // printf("\n");
-    // for(int i=0; i<m; i++){printf("%d ", b[i]);}
     printf("\n");
-    res = task3(a, n, b, m);
+    res = task(a, n, b, m);
     fprintf(fout, "%d", res);
     printf("%d", res);
     free(a);
@@ -52,13 +46,11 @@ int cmp(const void*a, const void*b)
     else {return 0;}
 }
 
-int task3(int *a, int n, int *b, int m)
+int task(int *a, int n, int *b, int m)
 {
     int minB = b[0];
     int maxA = a[n-1];
     int res=0;
-    // printf("minB = %d\n", minB);
-    // printf("maxA = %d\n", maxA);
     if(minB == maxA){return 1;}
     for(int i=0; i<n; i++)
     {
@@ -68,7 +60,6 @@ int task3(int *a, int n, int *b, int m)
             if(i==n-1){res++;}
         }
     }
-    printf("%d\n", res);
     for(int i=0; i<m; i++)
     {
         if(b[i]<maxA)
@@ -92,6 +83,6 @@ int task3(int *a, int n, int *b, int m)
         }
     }
     return res;
-} //A={1, 1, 2}  B={1, 2}
+}
 
 

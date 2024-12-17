@@ -47,7 +47,6 @@ int main(void)
 
 int task6(int *arra, int *arrb, int min)
 {
-    
     int res=0;
     int count = 1;
     int tmp = mod(*arra, *arrb);
