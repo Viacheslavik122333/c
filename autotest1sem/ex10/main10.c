@@ -10,7 +10,7 @@ int main(void)
     FILE* finb = fopen("inb.txt", "r");
     FILE* fout = fopen("output.txt", "w");
     int M=0, N=0, x;
-    int *ptra, *ptrb;
+    int *a, *b;
     if(!fina){return -1;}
     if(!finb){fclose(fina); return -1;}
     if(!fout){fclose(finb);fclose(fina); return -1;}
@@ -18,24 +18,18 @@ int main(void)
     while(fscanf(finb, "%d", &x)==1){N++;}
     if(M==0 || N==0){fclose(fout); fclose(finb);fclose(fina); return -1;}
     if(M==1 && N!=0){fprintf(fout, "YES"); fclose(fout); fclose(finb);fclose(fina); return 0;}
-    ptra = (int*)malloc(M*sizeof(int));
-    ptrb = (int*)malloc(N*sizeof(int));
+    a = (int*)malloc(M*sizeof(int));
+    b = (int*)malloc(N*sizeof(int));
     rewind(fina);
     rewind(finb);
-    for(int i=0; i<M; i++){fscanf(fina, "%d", &x); ptra[i]=x;}
-    for(int i=0; i<N; i++){fscanf(finb, "%d", &x); ptrb[i]=x;}
-    qsort(ptra, M, sizeof(int), cmp);
-    qsort(ptrb, N, sizeof(int), cmp);
-    if(fun(ptra, M, ptrb, N)==1)
-    {
-        fprintf(fout, "YES");
-    }
-    else
-    {
-        fprintf(fout, "NO");
-    }
-    free(ptra);
-    free(ptrb);
+    for(int i=0; i<M; i++){fscanf(fina, "%d", &x); a[i]=x;}
+    for(int i=0; i<N; i++){fscanf(finb, "%d", &x); b[i]=x;}
+    qsort(a, M, sizeof(int), cmp);
+    qsort(b, N, sizeof(int), cmp);
+    if(fun(a, M, b, N)==1){fprintf(fout, "YES");}
+    else{fprintf(fout, "NO");}
+    free(a);
+    free(b);
     fclose(fout); 
     fclose(finb);
     fclose(fina);
