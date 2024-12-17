@@ -7,40 +7,35 @@ void print(int *a, int *b, int M);
 
 int main (void)
 {
-    int M=0;
-    int res1;
-    int res2;
-    int *ptrA;
-    int *ptrB;
-    int x;
+    int res1, res2, M=0, N=0;
+    int *a, *b, x;
     FILE*fina = fopen("ina.txt", "r");
     FILE*finb = fopen("inb.txt", "r");
     FILE*fout = fopen("output.txt", "w");
-    if(!fina){return 0;}
-    if(!finb){fclose(fina); return 0;}
-    if(!fout){fclose(finb); fclose(fina); return 0;}
+    if(!fina){return -1;}
+    if(!finb){fclose(fina); return -1;}
+    if(!fout){fclose(finb); fclose(fina); return -1;}
     while(fscanf(fina, "%d", &x)==1){M++;}
-    if(M==0){fclose(fout); fclose(finb); fclose(fina); return 0;}
+    while(fscanf(finb, "%d", &x)==1){N++;}
+    if(M==0){fclose(fout); fclose(finb); fclose(fina); return -1;}
+    if(M!=N){fclose(fout); fclose(finb); fclose(fina); return -1;}
     if(M==1){fprintf(fout, "YES YES"); fclose(fout); fclose(finb); fclose(fina); return 0;}
-    rewind(fina);
-    ptrA = (int*)malloc(M * sizeof(int));
-    ptrB = (int*)malloc(M * sizeof(int));
-    for(int i=0; i<M; i++){fscanf(fina, "%d", &x); ptrA[i]=x;}
-    for(int i=0; i<M; i++){fscanf(finb, "%d", &x); ptrB[i]=x;}
-
-    res1 = fun(ptrA, ptrB, M);
-    
-    qsort(ptrA, M, sizeof(int), cmp);
-    qsort(ptrB, M, sizeof(int), cmp);
-
-    res2 = fun(ptrA, ptrB, M);
-
+    rewind(fina); 
+    rewind(finb);
+    a = (int*)malloc(M * sizeof(int));
+    b = (int*)malloc(M * sizeof(int));
+    for(int i=0; i<M; i++){fscanf(fina, "%d", &x); a[i]=x;}
+    for(int i=0; i<M; i++){fscanf(finb, "%d", &x); b[i]=x;}
+    res1 = fun(a, b, M);
+    qsort(a, M, sizeof(int), cmp);
+    qsort(b, M, sizeof(int), cmp);
+    res2 = fun(a, b, M);
     if(res1 == 1){fprintf(fout, "YES ");}
     else {fprintf(fout, "NO ");}
     if(res2 == 1){fprintf(fout, "YES");}
     else {fprintf(fout, "NO");}
-    free(ptrA);
-    free(ptrB);
+    free(a);
+    free(b);
     fclose(fout); 
     fclose(finb); 
     fclose(fina); 
@@ -64,7 +59,7 @@ int fun(int *a, int *b ,int M)
     for (int i=0; i<M; i++)
     {
         c=a[i]-b[i];
-        ptr[i]=a[i]-b[i];
+        ptr[i]=c;
         for(int j=0; j<i; j++)
         {
             if(ptr[j] == c){return -1;}

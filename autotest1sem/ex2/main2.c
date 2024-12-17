@@ -6,7 +6,7 @@ int cmp(const void*a, const void*b);
 
 int main(void)
 {
-    int sizeA, sizeB;
+    int n, m;
     double *a, *b, x;
     FILE* finA = fopen("ina.txt", "r");
     FILE* finB = fopen("inb.txt", "r");
@@ -14,24 +14,25 @@ int main(void)
     if(!finA){return -1;}
     if(!finB){fclose(finA); return -1;}
     if(!fout){fclose(finA);fclose(finB); return -1;}
-    while(fscanf(finA, "%lf", &x)==1){sizeA++;}
-    while(fscanf(finB, "%lf", &x)==1){sizeB++;}
+    while(fscanf(finA, "%lf", &x)==1){n++;}
+    while(fscanf(finB, "%lf", &x)==1){m++;}
     rewind(finA);
     rewind(finB);
-    if(sizeA==0||sizeB==0){fclose(finA); fclose(finB); fclose(fout); return -1;}
-    a = (double*)malloc(sizeA * sizeof(double));
-    b = (double*)malloc(sizeB * sizeof(double));
-    for(int i=0; i<sizeA; i++){fscanf(finA, "%lf", &x); a[i]=x;}
-    for(int i=0; i<sizeB; i++){fscanf(finB, "%lf", &x); b[i]=x;}
-    qsort(a, sizeA, sizeof(double), cmp);
-    qsort(b, sizeB, sizeof(double), cmp);
-    if(task(a, sizeA, b, sizeB)==1){fprintf(fout, "YES");printf("YES");}
+    if(n==0||m==0){fclose(finA); fclose(finB); fclose(fout); return -1;}
+    a = (double*)malloc(n * sizeof(double));
+    b = (double*)malloc(m * sizeof(double));
+    for(int i=0; i<n; i++){fscanf(finA, "%lf", &x); a[i]=x;}
+    for(int i=0; i<m; i++){fscanf(finB, "%lf", &x); b[i]=x;}
+    qsort(a, n, sizeof(double), cmp);
+    qsort(b, m, sizeof(double), cmp);
+    if(task(a, n, b, m)==1){fprintf(fout, "YES");printf("YES");}
     else{fprintf(fout, "NO");}
     free(a);
     free(b);
     fclose(finA); 
     fclose(finB); 
     fclose(fout);
+    return 0;
 }
 
 int cmp(const void*a, const void*b)

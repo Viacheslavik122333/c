@@ -28,7 +28,6 @@ int main (void)
     printf("\n");
     res = task(a, n, b, m);
     fprintf(fout, "%d", res);
-    printf("%d", res);
     free(a);
     free(b);
     fclose(fina); 
