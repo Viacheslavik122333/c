@@ -29,8 +29,8 @@ int main(void)
     qsort(b, m, sizeof(int), cmp);
     res1 = fun(a, n);
     res2 = fun(b, m);
-    if((n-res1)>=(m-res2)){for(int i=0; i<(n-res1); i++){fprintf(fout, "%d ", a[i]);}}
-    else {for(int i=0; i<(m-res2); i++){fprintf(fout, "%d ", b[i]);}}
+    if(res1>=res2){for(int i=0; i<res1; i++){fprintf(fout, "%d ", a[i]);}}
+    else {for(int i=0; i<res2; i++){fprintf(fout, "%d ", b[i]);}}
     free(a); free(b); fclose(fout); fclose(finb); fclose(fina); 
     return 0;
 }
@@ -49,7 +49,7 @@ int fun(int *a, int n)
             tmp--;
         }
     }
-    return k;
+    return n-k;
 }
 
 int cmp(const void*a, const void*b)
