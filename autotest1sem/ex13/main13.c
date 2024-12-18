@@ -6,15 +6,18 @@ int cmp(const void *a, const void *b);
 
 int main(void)
 {
-    FILE*fina=fopen("ina.txt", "r");
-    FILE*finb=fopen("inb.txt", "r");
-    FILE*fout=fopen("output.txt", "w");
     int n=0, m=0, res;
     int x;
     int *a, *b;
+    FILE* fina;
+    FILE* finb;
+    FILE* fout;
+    fina = fopen("ina.txt", "r");
     if(!fina){return -1;}
+    finb = fopen("inb.txt", "r");
     if(!finb){fclose(fina); return -1;}
-    if(!fout){fclose(finb); fclose(fina); return -1;}
+    fout = fopen("output.txt", "w");
+    if(!fout){fclose(finb);fclose(fina); return -1;}
     while(fscanf(fina, "%d", &x)==1){n++;}
     while(fscanf(finb, "%d", &x)==1){m++;}
     if(n==0 || m==0){fclose(fout); fclose(finb); fclose(fina); return -1;}

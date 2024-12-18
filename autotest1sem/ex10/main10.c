@@ -6,13 +6,16 @@ int fun(int *a, int M, int *b, int N);
 
 int main(void)
 {
-    FILE* fina = fopen("ina.txt", "r");
-    FILE* finb = fopen("inb.txt", "r");
-    FILE* fout = fopen("output.txt", "w");
     int M=0, N=0, x;
     int *a, *b;
+    FILE* fina;
+    FILE* finb;
+    FILE* fout;
+    fina = fopen("ina.txt", "r");
     if(!fina){return -1;}
+    finb = fopen("inb.txt", "r");
     if(!finb){fclose(fina); return -1;}
+    fout = fopen("output.txt", "w");
     if(!fout){fclose(finb);fclose(fina); return -1;}
     while(fscanf(fina, "%d", &x)==1){M++;}
     while(fscanf(finb, "%d", &x)==1){N++;}

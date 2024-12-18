@@ -9,12 +9,15 @@ int main (void)
 {
     int res1, res2, M=0, N=0;
     int *a, *b, x;
-    FILE*fina = fopen("ina.txt", "r");
-    FILE*finb = fopen("inb.txt", "r");
-    FILE*fout = fopen("output.txt", "w");
+    FILE* fina;
+    FILE* finb;
+    FILE* fout;
+    fina = fopen("ina.txt", "r");
     if(!fina){return -1;}
+    finb = fopen("inb.txt", "r");
     if(!finb){fclose(fina); return -1;}
-    if(!fout){fclose(finb); fclose(fina); return -1;}
+    fout = fopen("output.txt", "w");
+    if(!fout){fclose(finb);fclose(fina); return -1;}
     while(fscanf(fina, "%d", &x)==1){M++;}
     while(fscanf(finb, "%d", &x)==1){N++;}
     if(M==0){fclose(fout); fclose(finb); fclose(fina); return -1;}

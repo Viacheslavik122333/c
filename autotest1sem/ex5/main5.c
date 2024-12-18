@@ -8,28 +8,31 @@ int main(void)
 {
     int n=0, m=0;
     double *a, *b, x;
-    FILE* finA = fopen("ina.txt", "r");
-    FILE* finB = fopen("inb.txt", "r");
-    FILE* fout = fopen("output.txt", "w");
-    if(!finA){return -1;}
-    if(!finB){fclose(finA); return -1;}
-    if(!fout){fclose(finA);fclose(finB); return -1;}
-    while(fscanf(finA, "%lf", &x)==1){n++;}
-    while(fscanf(finB, "%lf", &x)==1){m++;}
-    rewind(finA);
-    rewind(finB);
-    if(n==0||m==0){fclose(finA); fclose(finB); fclose(fout); return -1;}
+    FILE* fina;
+    FILE* finb;
+    FILE* fout;
+    fina = fopen("ina.txt", "r");
+    if(!fina){return -1;}
+    finb = fopen("inb.txt", "r");
+    if(!finb){fclose(fina); return -1;}
+    fout = fopen("output.txt", "w");
+    if(!fout){fclose(finb);fclose(fina); return -1;}
+    while(fscanf(fina, "%lf", &x)==1){n++;}
+    while(fscanf(finb, "%lf", &x)==1){m++;}
+    rewind(fina);
+    rewind(finb);
+    if(n==0||m==0){fclose(fina); fclose(finb); fclose(fout); return -1;}
     a = (double*)malloc(n * sizeof(double));
     b = (double*)malloc(m * sizeof(double));
-    for(int i=0; i<n; i++){fscanf(finA, "%lf", &x); a[i]=x;}
-    for(int i=0; i<m; i++){fscanf(finB, "%lf", &x); b[i]=x;}
+    for(int i=0; i<n; i++){fscanf(fina, "%lf", &x); a[i]=x;}
+    for(int i=0; i<m; i++){fscanf(finb, "%lf", &x); b[i]=x;}
     qsort(a, n, sizeof(double), cmp);
     qsort(b, m, sizeof(double), cmp);
     task5(a, n, b, m, fout);
     free(a);
     free(b);
-    fclose(finA); 
-    fclose(finB); 
+    fclose(fina); 
+    fclose(finb); 
     fclose(fout);
     return 0;
 }

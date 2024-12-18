@@ -6,15 +6,18 @@ int fun(double *a, double *b, int n);
 
 int main (void)
 {
-    FILE*fina = fopen("ina.txt", "r");
-    FILE*finb = fopen("inb.txt", "r");
-    FILE*fout = fopen("output.txt", "w");
+    FILE*fina;
+    FILE*finb;
+    FILE*fout;
     double x;
     int n=0, m=0, res;
     double *a, *b;
+    fina = fopen("ina.txt", "r");
     if(!fina){return -1;}
+    finb = fopen("inb.txt", "r");
     if(!finb){fclose(fina); return -1;}
-    if(!fout){fclose(finb); fclose(fina); return -1;}
+    fout = fopen("output.txt", "w");
+    if(!fout){fclose(finb);fclose(fina); return -1;}
     while(fscanf(fina, "%lf", &x)==1){n++;}
     while(fscanf(finb, "%lf", &x)==1){m++;}
     if(m!=n){fclose(fout); fclose(finb); fclose(fina); return -1;}
@@ -51,11 +54,11 @@ int fun(double *a, double *b, int n)
     int fl1=0, fl2=0;
     for(int i=0; i<n; i++)
     {
-        if((a[i]-b[i])>1e-6)
+        if(a[i]>b[i])
         {
             fl1 = 1;
         }
-        else if((b[i]-a[i])>1e-6)
+        else if(b[i]>a[i])
         {
             fl1 = -1;
         }
