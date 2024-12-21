@@ -1,6 +1,7 @@
 #include"stdio.h"
 #include"stdlib.h"
 
+int fun(int *a, int n, int *b, int m, int j);
 int cmp(const void*a, const void*b);
 int task(int *a, int n, int *b, int m);
 
@@ -28,7 +29,6 @@ int main (void)
     for(int i=0; i<m; i++){fscanf(finb, "%d", &x); b[i] = x;}
     qsort(a, n, sizeof(int), cmp);
     qsort(b, m, sizeof(int), cmp);
-    printf("\n");
     res = task(a, n, b, m);
     fprintf(fout, "%d", res);
     free(a);
@@ -50,41 +50,25 @@ int cmp(const void*a, const void*b)
 
 int task(int *a, int n, int *b, int m)
 {
-    int minB = b[0];
-    int maxA = a[n-1];
     int res=0;
-    if(minB == maxA){return 1;}
+    for (int i=b[0]; i<=a[n-1]; i++)
+    {
+        res += fun(a, n, b, m, i);
+    }
+    return res;
+}
+
+int fun(int *a, int n, int *b, int m, int j)
+{
     for(int i=0; i<n; i++)
     {
-        if(a[i]>=minB)
-        {
-            if(i<n-1 && a[i]!=a[i+1]){res++;}
-            if(i==n-1){res++;}
-        }
+        if(a[i]==j){return 1;}
     }
     for(int i=0; i<m; i++)
     {
-        if(b[i]<maxA)
-        {
-            if(i<m-1 && b[i]!=b[i+1])
-            {
-                res++;
-                for(int j=0; j<m; j++)
-                {
-                    if(b[i]==a[j]){res--; break;}
-                }
-            }
-            if(i==m-1)
-            {
-                res++;
-                for(int j=0; j<m; j++)
-                {
-                    if(b[i]==a[j]){res--; break;}
-                }
-            }
-        }
+        if(b[i]==j){return 1;}
     }
-    return res;
+    return 0;
 }
 
 
