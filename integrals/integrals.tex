@@ -1,0 +1,139 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{import}
+
+% Корректность отображения всех шрифтов, кодировок и мат. символов
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+
+% Отображение содержания
+\usepackage{tocloft}
+
+% Вставка картинок
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{asymptote}
+
+
+\usepackage{wrapfig}        % Огибание картинок текстом
+\usepackage{cancel}         % Зачёркивания
+\usepackage{indentfirst}    % Отступ у первого абзаца
+\usepackage{xcolor}         % Цвета
+\setlength{\parskip}{.5ex}  % Отступы между абзацами
+\usepackage{enumitem}       % Работа со списками
+% \usepackage{minted}       % Вставка блоков кода
+
+\usepackage{hyperref}       % гиперссылки
+\definecolor{linkcolor}{HTML}{225ae2} % Цвет ссылок
+\definecolor{urlcolor}{HTML}{225ae2} % Цвет гиперссылок
+\hypersetup{
+    pdfstartview=FitH, 
+    linkcolor=linkcolor,
+    urlcolor=urlcolor,
+    colorlinks=true}
+\setlength{\arrayrulewidth}{0.5mm} %Толщина линейки в таблицах
+\setlength{\tabcolsep}{18pt} %Разделение между столбцами в таблице
+
+% Отступы на странице
+\usepackage[left=2cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+\usepackage{cmap}            % Русский поиск в PDF документе
+\usepackage{etoolbox}
+\usepackage{soul}            % Разряженный текст \so{} и подчеркивание \ul{}
+\usepackage{soulutf8}        % Поддержка UTF8 в soul
+
+\usepackage{titlesec}        % Форматирование заголовков
+\titleformat{\section}{\LARGE \bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\aug}{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\id}{\mathrm{id}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newsavebox{\boxedalignbox}
+\newenvironment{boxedalign*}
+  {\begin{equation*}\begin{lrbox}{\boxedalignbox}$\begin{aligned}}
+  {\end{aligned}$\end{lrbox}\fbox{\usebox{\boxedalignbox}}\end{equation*}}
+
+\newcommand\tab[1][.5cm]{\hspace*{#1}}
+
+% Подписи для матриц
+\newcommand\undermat[2]{\makebox[0pt][l]{$\smash{\underbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+\newcommand\overmat[2]{\makebox[0pt][l]{$\smash{\overbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}^{\text{$#1$}}}$}#2}
+
+% Значек "пусть"
+\newlength{\tempheight}  
+\newcommand{\Let}[0]{  
+\mathbin{\text{\settoheight{\tempheight}{\mathstrut}\raisebox{0.5\pgflinewidth}{%
+\tikz[baseline,line cap=round,line join=round] \draw (0,0) --++ (0.4em,0) --++ (0,1.5ex) --++ (-0.4em,0);
+}}}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+% \newtheorem{definitionnum}[defcount]{Определение}
+\newtheorem*{example}{Примеры}
+\newtheorem*{example1}{Пример}
+\newtheorem*{exercise}{Упражнение}
+
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Теорема}
+% \newtheorem{theoremnum}[thcount]{Теорема}
+\newtheorem*{consequense}{Следствие}
+\newtheorem*{consequenses}{Следствия}
+% \newtheorem{consequensenum}[concount]{Следствие}
+\newtheorem*{lemma}{Лемма}
+% \newtheorem{lemmanum}[lemcount]{Лемма}
+\newtheorem*{subtheorem}{Утверждение}
+% \newtheorem{subtheoremnum}[subthcount]{Утверждение}
+\newtheorem*{algorithm}{Алгоритм}
+\newtheorem*{properties}{Свойства}
+\newtheorem*{properties1}{Свойство}
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem*{offer}{Предложение}
+% \newtheorem{offernum}[offercount]{Предложение}
+
+
+\begin{document}
+  \section*{Табличные интегралы}
+  \begin{enumerate}
+    \item $\int x^{\alpha}dx = \frac{x^{\alpha+1}}{\alpha+1} + C$
+    \item $\int \frac{dx}{x} = \ln |x| + C$
+    \item $\int a^x  \ dx = \frac{a^x}{\ln a}$
+    \item $\int e^x \ dx = e^x + C$
+    \item $\int \sin x \ dx = -\cos x + C \hspace{2.3cm} (\int \sh x \ dx = \ch x + C)$
+    \item $\int \cos x \ dx = \sin x + C \hspace{2.7cm} (\int \ch x \ dx = \sh x + C)$
+    \item $\int \tg x \ dx = -\ln|\cos x| + C$
+    \item $\int \ctg x \ dx = -\ln|\sin x| + C$
+    \item $\int \frac{dx}{\cos^2 x} = \tg x + C \hspace{3.5cm} (\int \frac{dx}{\ch^2 x} = \th x + C)$
+    \item $\int \frac{dx}{\sin^2 x} = -\ctg x + C \hspace{3cm} (\int \frac{dx}{\sh^2 x} = -\cth x + C)$
+    \item $\int \frac{dx}{\sin x} = \ln|\tg \frac{x}{2}| + C$
+    \item $\int \frac{dx}{\cos x} = \ln|\tg (\frac{x}{2} + \frac{\pi}{4})| + C$
+    \item $\int \frac{dx}{\sqrt{a^2 - x^2}} \ dx = \arcsin \frac{x}{a} + C $
+    \item $\int \frac{dx}{\sqrt{x^2 + a^2}} \ dx = \ln |x + \sqrt{x^2 + a^2}|+ C$
+    \item $\int \frac{dx}{a^2 + x^2} \ dx = \frac{1}{a}\arctg \frac{x}{a}+ C$
+    \item $\int \frac{dx}{a^2 - x^2} \ dx = \frac{1}{2a} \ln |\frac{a+x}{a-x}|+ C$
+    \item $\int \sqrt{a^2-x^2} \ dx = \frac{x}{2} \sqrt{a^2-x^2} + \frac{a^2}{2} \arcsin \frac{x}{a} + C$
+    \item $\int \sqrt{x^2\pm a^2} \ dx = \frac{x}{2} \sqrt{x^2\pm a^2} \pm \frac{a^2}{2} \ln |x + \sqrt{x^2\pm a^2}| + C$
+  \end{enumerate}
+  
+
+
+\end{document}

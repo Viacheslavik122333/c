@@ -15,7 +15,7 @@ int main(void)
     double res[20];
     int count=0;
     int examination=0;
-
+    
     srand(time(NULL));
 
     for (int r=0; r<5; r++)
