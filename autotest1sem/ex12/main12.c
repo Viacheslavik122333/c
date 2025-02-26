@@ -22,6 +22,7 @@ int main (void)
     while(fscanf(finb, "%lf", &x)==1){m++;}
     if(m!=n){fclose(fout); fclose(finb); fclose(fina); return -1;}
     if(n==0){fclose(fout); fclose(finb); fclose(fina); return -1;}
+    if(n==1){fprintf(fout, "YES"); fclose(fout); fclose(finb); fclose(fina); return -1;}
     a = (double*)malloc(n*sizeof(double));
     b = (double*)malloc(n*sizeof(double));
     rewind (fina); rewind(finb);
@@ -37,7 +38,7 @@ int main (void)
     fclose(fout); 
     fclose(finb); 
     fclose(fina); 
-    return -1;
+    return 0;
 }
 
 int cmp(const void*a, const void*b)
