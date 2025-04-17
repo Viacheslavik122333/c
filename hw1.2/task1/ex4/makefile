@@ -14,8 +14,8 @@ main.o: main.c header.h
 fun.o: fun.c header.h
 	$(CC) $(CFLAGS) fun.c
 
-cheсk.o: cheсk.c header.h
-	$(CC) $(CFLAGS) cheсk.c
+check.o: check.c header.h
+	$(CC) $(CFLAGS) check.c
 
 cl:
 	rm -rf *.o *.dSYM

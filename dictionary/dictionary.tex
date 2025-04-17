@@ -1,0 +1,792 @@
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{import}
+
+% Корректность отображения всех шрифтов, кодировок и мат. символов
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+
+% Отображение содержания
+\usepackage{tocloft}
+
+% Вставка картинок
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{asymptote}
+
+
+\usepackage{wrapfig}        % Огибание картинок текстом
+\usepackage{cancel}         % Зачёркивания
+\usepackage{indentfirst}    % Отступ у первого абзаца
+\usepackage{xcolor}         % Цвета
+\setlength{\parskip}{.5ex}  % Отступы между абзацами
+\usepackage{enumitem}       % Работа со списками
+% \usepackage{minted}       % Вставка блоков кода
+
+\usepackage{hyperref}       % гиперссылки
+\definecolor{linkcolor}{HTML}{225ae2} % Цвет ссылок
+\definecolor{urlcolor}{HTML}{225ae2} % Цвет гиперссылок
+\hypersetup{
+    pdfstartview=FitH, 
+    linkcolor=linkcolor,
+    urlcolor=urlcolor,
+    colorlinks=true}
+\setlength{\arrayrulewidth}{0.5mm} %Толщина линейки в таблицах
+\setlength{\tabcolsep}{18pt} %Разделение между столбцами в таблице
+
+% Отступы на странице
+\usepackage[left=2cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+\usepackage{cmap}            % Русский поиск в PDF документе
+\usepackage{etoolbox}
+\usepackage{soul}            % Разряженный текст \so{} и подчеркивание \ul{}
+\usepackage{soulutf8}        % Поддержка UTF8 в soul
+
+\usepackage{titlesec}        % Форматирование заголовков
+\titleformat{\section}{\Large \bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\F}{\mathbb F}
+\newcommand{\aug}{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\id}{\mathrm{id}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newsavebox{\boxedalignbox}
+\newenvironment{boxedalign*}
+  {\begin{equation*}\begin{lrbox}{\boxedalignbox}$\begin{aligned}}
+  {\end{aligned}$\end{lrbox}\fbox{\usebox{\boxedalignbox}}\end{equation*}}
+
+\newcommand\tab[1][.5cm]{\hspace*{#1}}
+
+% Подписи для матриц
+\newcommand\undermat[2]{\makebox[0pt][l]{$\smash{\underbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+\newcommand\overmat[2]{\makebox[0pt][l]{$\smash{\overbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}^{\text{$#1$}}}$}#2}
+
+% Значек "пусть"
+\newlength{\tempheight}  
+\newcommand{\Let}[0]{  
+\mathbin{\text{\settoheight{\tempheight}{\mathstrut}\raisebox{0.5\pgflinewidth}{%
+\tikz[baseline,line cap=round,line join=round] \draw (0,0) --++ (0.4em,0) --++ (0,1.5ex) --++ (-0.4em,0);
+}}}}
+
+
+% \newcounter{lemcount}
+% \newcounter{thcount}
+% \newcounter{offercount}
+% \newcounter{concount}
+% \newcounter{subthcount}
+% \newcounter{defcount}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+% \newtheorem{definitionnum}[defcount]{Определение}
+\newtheorem*{example}{Примеры}
+\newtheorem*{example1}{Пример}
+\newtheorem*{exercise}{Упражнение}
+
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Теорема}
+% \newtheorem{theoremnum}[thcount]{Теорема}
+\newtheorem*{consequense}{Следствие}
+\newtheorem*{consequenses}{Следствия}
+% \newtheorem{consequensenum}[concount]{Следствие}
+\newtheorem*{lemma}{Лемма}
+% \newtheorem{lemmanum}[lemcount]{Лемма}
+\newtheorem*{subtheorem}{Утверждение}
+% \newtheorem{subtheoremnum}[subthcount]{Утверждение}
+\newtheorem*{algorithm}{Алгоритм}
+\newtheorem*{properties}{Свойства}
+\newtheorem*{properties1}{Свойство}
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem*{offer}{Предложение}
+% \newtheorem{offernum}[offercount]{Предложение}
+
+\begin{document}
+\begin{center}
+    \textbf{{\LARGE Словарь математических терминов} }    
+\end{center}
+
+\section{Section}
+
+\subsection{set – множество}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item finite set – конечное множество
+        \item infinite set – бесконечное множество
+        \item empty set – пустое множество
+        \item subset – подмножество
+        \item proper subset – собственное подмножество
+    \end{itemize}
+    
+    \item \textbf{SET + NOUN}
+    \begin{itemize}
+        \item set notation – обозначение множества
+        \item set equality – равенство множеств
+        \item set operations – операции над множествами
+        \item set membership – принадлежность множеству
+    \end{itemize}
+    
+    \item \textbf{SET + OF + NOUN}
+    \begin{itemize}
+        \item set of solutions – множество решений
+        \item set of points – множество точек
+        \item set of natural numbers – множество натуральных чисел
+        \item set of real numbers – множество действительных чисел
+    \end{itemize}
+    
+    \item \textbf{NOUN + SET}
+    \begin{itemize}
+        \item solution set – множество решений
+        \item plane set – множество на плоскости
+        \item power set – булеан (множество всех подмножеств)
+    \end{itemize}
+    
+    \item \textbf{NOUN + OF + SET}
+    \begin{itemize}
+        \item element of a set – элемент множества
+        \item subset of a set – подмножество множества
+        \item union of sets – объединение множеств
+        \item intersection of sets – пересечение множеств
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the set of all natural numbers – множество всех натуральных чисел
+        \item the set of real numbers – множество действительных чисел
+        \item the set of integers – множество целых чисел
+        \item the set of rational numbers – множество рациональных чисел
+    \end{itemize}
+\end{itemize}
+
+\subsection{union – объединение}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item disjoint union – непересекающееся объединение
+    \end{itemize}
+    
+    \item \textbf{UNION + NOUN}
+    \begin{itemize}
+        \item union of sets – объединение множеств
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the union of A and B – объединение A и B
+        \item the union of intervals – объединение интервалов
+    \end{itemize}
+\end{itemize}
+
+\subsection{intersection – пересечение}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item empty intersection – пустое пересечение
+    \end{itemize}
+    
+    \item \textbf{INTERSECTION + NOUN}
+    \begin{itemize}
+        \item intersection of sets – пересечение множеств
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the intersection of A and B – пересечение A и B
+        \item the intersection of intervals – пересечение интервалов
+    \end{itemize}
+\end{itemize}
+
+\subsection{difference – разность}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item symmetric difference – симметрическая разность
+    \end{itemize}
+    
+    \item \textbf{DIFFERENCE + NOUN}
+    \begin{itemize}
+        \item difference of sets – разность множеств
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the difference between A and B – разность между A и B
+        \item the difference of intervals – разность интервалов
+    \end{itemize}
+\end{itemize}
+
+\subsection{element – элемент}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item arbitrary element – произвольный элемент
+        \item specific element – конкретный элемент
+    \end{itemize}
+    
+    \item \textbf{ELEMENT + NOUN}
+    \begin{itemize}
+        \item element of a set – элемент множества
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item an element of the set – элемент множества
+        \item the elements of a list – элементы списка
+    \end{itemize}
+\end{itemize}
+
+\subsection{subset – подмножество}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item proper subset – собственное подмножество
+    \end{itemize}
+    
+    \item \textbf{SUBSET + NOUN}
+    \begin{itemize}
+        \item subset relation – отношение подмножества
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item a subset of the set – подмножество множества
+        \item the subset of natural numbers – подмножество натуральных чисел
+    \end{itemize}
+\end{itemize}
+
+\subsection{plane set – множество на плоскости}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item finite plane set – конечное множество на плоскости
+        \item infinite plane set – бесконечное множество на плоскости
+    \end{itemize}
+    
+    \item \textbf{PLANE SET + NOUN}
+    \begin{itemize}
+        \item plane set notation – обозначение множества на плоскости
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the plane set of points – множество точек на плоскости
+        \item the plane set of solutions – множество решений на плоскости
+    \end{itemize}
+\end{itemize}
+
+\subsection{interval – интервал}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item open interval – открытый интервал
+        \item closed interval – замкнутый интервал
+        \item half-open interval – полуоткрытый интервал
+    \end{itemize}
+    
+    \item \textbf{INTERVAL + NOUN}
+    \begin{itemize}
+        \item interval notation – обозначение интервала
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the interval from a to b – интервал от a до b
+        \item the interval of real numbers – интервал действительных чисел
+    \end{itemize}
+\end{itemize}
+
+\subsection{function – функция}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item real function – действительная функция
+        \item continuous function – непрерывная функция
+        \item differentiable function – дифференцируемая функция
+    \end{itemize}
+    
+    \item \textbf{FUNCTION + NOUN}
+    \begin{itemize}
+        \item function domain – область определения функции
+        \item function graph – график функции
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the function of x – функция от x
+        \item the graph of the function – график функции
+    \end{itemize}
+\end{itemize}
+
+\subsection{graph – график}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function graph – график функции
+        \item linear graph – линейный график
+    \end{itemize}
+    
+    \item \textbf{GRAPH + NOUN}
+    \begin{itemize}
+        \item graph of a function – график функции
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the graph of the equation – график уравнения
+        \item the graph of the line – график прямой
+    \end{itemize}
+\end{itemize}
+
+\subsection{equation – уравнение}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item quadratic equation – квадратное уравнение
+        \item linear equation – линейное уравнение
+    \end{itemize}
+    
+    \item \textbf{EQUATION + NOUN}
+    \begin{itemize}
+        \item equation solution – решение уравнения
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the solution of the equation – решение уравнения
+        \item the equation of the line – уравнение прямой
+    \end{itemize}
+\end{itemize}
+
+\subsection{variable – переменная}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item real variable – действительная переменная
+        \item independent variable – независимая переменная
+        \item dependent variable – зависимая переменная
+    \end{itemize}
+    
+    \item \textbf{VARIABLE + NOUN}
+    \begin{itemize}
+        \item variable value – значение переменной
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the variable x – переменная x
+        \item the value of the variable – значение переменной
+    \end{itemize}
+\end{itemize}
+
+\subsection{domain – область определения}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function domain – область определения функции
+    \end{itemize}
+    
+    \item \textbf{DOMAIN + NOUN}
+    \begin{itemize}
+        \item domain of definition – область определения
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the domain of the function – область определения функции
+        \item the domain of real numbers – область действительных чисел
+    \end{itemize}
+\end{itemize}
+
+\subsection{range – область значений}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function range – область значений функции
+    \end{itemize}
+    
+    \item \textbf{RANGE + NOUN}
+    \begin{itemize}
+        \item range of values – диапазон значений
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the range of the function – область значений функции
+        \item the range of real numbers – область действительных чисел
+    \end{itemize}
+\end{itemize}
+
+\section{Section}
+
+\subsection{function – функция}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item real function – действительная функция
+        \item one-one function – инъективная функция
+        \item onto function – сюръективная функция
+        \item inverse function – обратная функция
+        \item composite function – композиция функций
+        \item identity function – тождественная функция
+        \item distance function – функция расстояния
+        \item parametrisation function – функция параметризации
+        \item linear function – линейная функция
+        \item quadratic function – квадратичная функция
+    \end{itemize}
+    
+    \item \textbf{FUNCTION + NOUN}
+    \begin{itemize}
+        \item function domain – область определения функции
+        \item function codomain – область значений функции
+        \item function image – образ функции
+        \item function rule – правило функции
+        \item function graph – график функции
+        \item function composition – композиция функций
+    \end{itemize}
+    
+    \item \textbf{FUNCTION + OF + NOUN}
+    \begin{itemize}
+        \item function of a variable – функция переменной
+        \item function of two variables – функция двух переменных
+        \item function of time – функция времени
+    \end{itemize}
+    
+    \item \textbf{NOUN + FUNCTION}
+    \begin{itemize}
+        \item identity function – тождественная функция
+        \item distance function – функция расстояния
+        \item parametrisation function – функция параметризации
+        \item transformation function – функция преобразования
+    \end{itemize}
+    
+    \item \textbf{NOUN + OF + FUNCTION}
+    \begin{itemize}
+        \item image of a function – образ функции
+        \item inverse of a function – обратная функция
+        \item composition of functions – композиция функций
+        \item domain of a function – область определения функции
+        \item codomain of a function – область значений функции
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the function maps A to B – функция отображает A в B
+        \item the function is one-one – функция инъективна
+        \item the function is onto – функция сюръективна
+        \item the function is bijective – функция биективна
+        \item the function is invertible – функция обратима
+    \end{itemize}
+\end{itemize}
+
+\subsection{image – образ}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function image – образ функции
+        \item image set – множество образов
+    \end{itemize}
+    
+    \item \textbf{IMAGE + NOUN}
+    \begin{itemize}
+        \item image of a set – образ множества
+        \item image of a point – образ точки
+        \item image of a transformation – образ преобразования
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the image under a function – образ при отображении функции
+        \item the image of the domain – образ области определения
+        \item the image of a transformation – образ преобразования
+    \end{itemize}
+\end{itemize}
+
+\subsection{inverse – обратный}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item inverse function – обратная функция
+        \item inverse mapping – обратное отображение
+        \item inverse transformation – обратное преобразование
+    \end{itemize}
+    
+    \item \textbf{INVERSE + NOUN}
+    \begin{itemize}
+        \item inverse of a function – обратная функция
+        \item inverse of a transformation – обратное преобразование
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the inverse of a function – обратная функция
+        \item the inverse of a transformation – обратное преобразование
+        \item the function has an inverse – функция имеет обратную
+    \end{itemize}
+\end{itemize}
+
+\subsection{composition – композиция}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function composition – композиция функций
+        \item transformation composition – композиция преобразований
+    \end{itemize}
+    
+    \item \textbf{COMPOSITION + NOUN}
+    \begin{itemize}
+        \item composition of functions – композиция функций
+        \item composition of transformations – композиция преобразований
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the composition of two functions – композиция двух функций
+        \item the composition of transformations – композиция преобразований
+        \item the composition is associative – композиция ассоциативна
+    \end{itemize}
+\end{itemize}
+
+\subsection{transformation – преобразование}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item linear transformation – линейное преобразование
+        \item geometric transformation – геометрическое преобразование
+        \item translation transformation – преобразование сдвига
+        \item reflection transformation – преобразование отражения
+        \item rotation transformation – преобразование поворота
+    \end{itemize}
+    
+    \item \textbf{TRANSFORMATION + NOUN}
+    \begin{itemize}
+        \item transformation of the plane – преобразование плоскости
+        \item transformation rule – правило преобразования
+        \item transformation matrix – матрица преобразования
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the transformation maps A to B – преобразование отображает A в B
+        \item the transformation is a rotation – преобразование является поворотом
+        \item the transformation is a reflection – преобразование является отражением
+        \item the transformation is a translation – преобразование является сдвигом
+    \end{itemize}
+\end{itemize}
+
+\subsection{domain – область определения}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function domain – область определения функции
+        \item domain of definition – область определения
+    \end{itemize}
+    
+    \item \textbf{DOMAIN + NOUN}
+    \begin{itemize}
+        \item domain of a function – область определения функции
+        \item domain of a transformation – область определения преобразования
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the domain of a function – область определения функции
+        \item the domain of real numbers – область действительных чисел
+        \item the domain is restricted – область определения ограничена
+    \end{itemize}
+\end{itemize}
+
+\subsection{codomain – область значений}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function codomain – область значений функции
+    \end{itemize}
+    
+    \item \textbf{CODOMAIN + NOUN}
+    \begin{itemize}
+        \item codomain of a function – область значений функции
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the codomain of a function – область значений функции
+        \item the codomain of real numbers – область действительных чисел
+        \item the codomain coincides with the image – область значений совпадает с образом
+    \end{itemize}
+\end{itemize}
+
+\subsection{identity function – тождественная функция}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item identity function on a set – тождественная функция на множестве
+    \end{itemize}
+    
+    \item \textbf{IDENTITY FUNCTION + NOUN}
+    \begin{itemize}
+        \item identity function rule – правило тождественной функции
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the identity function maps each element to itself – тождественная функция отображает каждый элемент в себя
+        \item the identity function is bijective – тождественная функция биективна
+    \end{itemize}
+\end{itemize}
+
+\subsection{parametrisation – параметризация}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item curve parametrisation – параметризация кривой
+        \item unit circle parametrisation – параметризация единичной окружности
+    \end{itemize}
+    
+    \item \textbf{PARAMETRISATION + NOUN}
+    \begin{itemize}
+        \item parametrisation of a curve – параметризация кривой
+        \item parametrisation of a surface – параметризация поверхности
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the parametrisation of the unit circle – параметризация единичной окружности
+        \item the parametrisation is smooth – параметризация гладкая
+    \end{itemize}
+\end{itemize}
+
+\subsection{distance function – функция расстояния}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item distance function in the plane – функция расстояния на плоскости
+        \item distance function from the origin – функция расстояния от начала координат
+    \end{itemize}
+    
+    \item \textbf{DISTANCE FUNCTION + NOUN}
+    \begin{itemize}
+        \item distance function rule – правило функции расстояния
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the distance function from the origin – функция расстояния от начала координат
+        \item the distance function is continuous – функция расстояния непрерывна
+    \end{itemize}
+\end{itemize}
+
+\subsection{restriction – ограничение}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item function restriction – ограничение функции
+        \item domain restriction – ограничение области определения
+    \end{itemize}
+    
+    \item \textbf{RESTRICTION + NOUN}
+    \begin{itemize}
+        \item restriction of a function – ограничение функции
+        \item restriction to a subset – ограничение на подмножество
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the restriction of a function to a subset – ограничение функции на подмножество
+        \item the restriction is one-one – ограничение инъективно
+    \end{itemize}
+\end{itemize}
+
+\subsection{bijection – биекция}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item bijective function – биективная функция
+    \end{itemize}
+    
+    \item \textbf{BIJECTION + NOUN}
+    \begin{itemize}
+        \item bijection between sets – биекция между множествами
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the function is a bijection – функция является биекцией
+        \item the bijection is invertible – биекция обратима
+    \end{itemize}
+\end{itemize}
+
+\subsection{injective – инъективный}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item injective function – инъективная функция
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the function is injective – функция инъективна
+        \item the mapping is injective – отображение инъективно
+    \end{itemize}
+\end{itemize}
+
+\subsection{surjective – сюръективный}
+
+\begin{itemize}
+    \item \textbf{ADJ.}
+    \begin{itemize}
+        \item surjective function – сюръективная функция
+    \end{itemize}
+    
+    \item \textbf{PHRASES}
+    \begin{itemize}
+        \item the function is surjective – функция сюръективна
+        \item the mapping is surjective – отображение сюръективно
+    \end{itemize}
+\end{itemize}
+
+\end{document}
