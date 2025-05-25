@@ -1,18 +1,5 @@
 #include "header.h"
 
-double norma(double *a, int n)
-{
-    double res=0;
-    for (int i =0 ; i<n; i++)
-    {
-        res += (a[i]-1)*(a[i]-1);
-    }
-    // printf("res = %lf\n", res);
-    res = res/n;
-    return sqrt(res);
-}
-
-
 bool isConvergent(int n, double * a) // проверка на сходимость метода ( |a_{ii}|> |\sum_{i \neq j} a_{ij}| )
 {
 #define A(i, j) a[(i)*n + (j)]
@@ -29,46 +16,44 @@ bool isConvergent(int n, double * a) // проверка на сходимост
 #undef A
 }
 
-void simpleIteration(int n, double * a, double * b, double * x)
+void ZendelIteration(int n, double * a, double * b, double * x)
 {
 #define A(i, j) a[(i)*n + (j)]
     double x_new[n];
     int iterations = 0;
-    double difference=1, tmp;
+    double difference=1, sum;
     int MAX_ITERATIONS = 100;
     double eps = 1e-10; // заданная точность
-    double q_1, q_2;
 
     for(int i = 0; i < n; i++) {x[i] = 0;} // заполним изначально решения нулями
 
     while (iterations < MAX_ITERATIONS && difference > eps)
     {
         difference = 0;
-        
-        for (int i = 0; i < n; i++) 
-        {
-            x_new[i] = b[i];
 
-            for (int j = 0; j < n; j++) 
-            {
-                if (i != j) 
-                {
-                    x_new[i] -= A(i,j) * x[j];
-                }
-            }
-
-            x_new[i] /= A(i,i);
+        for (int i = 0; i < n; i++) {
+            sum = 0;
             
-            tmp = fabs(x_new[i] - x[i]);
-
-            if (tmp > difference) difference = tmp;
+            for (int j = 0; j < i; j++) 
+            {
+                sum += A(i,j) * x_new[j];
+            }
+            
+            for (int j = i + 1; j < n; j++) 
+            {
+                sum += A(i,j) * x[j];
+            }
+            
+            x_new[i] = (b[i] - sum) / A(i,i);
+            
+            if (fabs(x_new[i] - x[i]) > difference) 
+            {
+                difference = fabs(x_new[i] - x[i]);
+            }
+            
+            x[i] = x_new[i];
         }
-        q_2 = norma(x,n);
-        // printf("q_2 = %lf\n", q_2);
-        for (int i = 0; i < n; i++) x[i] = x_new[i];
-        q_1 = norma(x_new,n);
-        printf("%lf\n", q_1/q_2);
-
+        
         iterations++;
     }
 
@@ -89,27 +74,17 @@ double * Array(int n)
 }
 
 
-void FillArrayMatrix(double *a, double *b, int n)
+void FillArrayMatrix(double *a, double *b, int n, FILE *f)
 {
 #define A(i, j) a[(i)*n + (j)]
 	int i,j;
-    double sum=0, sum2=0, c = 2;
-    srand(time(0));
 	for(i=0;i<n;i++)
 	{
 		for(j=0;j<n;j++)
 		{
-			if(i!=j)
-			{
-				A(i, j) = rand() % 201 - 100; // генерация чисел от -100 до 100
-				sum +=fabs(A(i,j));
-				sum2 +=A(i,j);
-			}
+			fscanf(f, "%lf", &A(i, j));
 		}
-        A(i,i) = c * sum;
-        b[i] = sum2 + A(i,i);
-        sum=0;
-		sum2=0;
+        fscanf(f, "%lf", &b[i]);
 	}
 #undef A
 }
@@ -120,7 +95,7 @@ void PrintSolution(double * x, int n)
     printf("Solution:\n");
 	for(int i = 0; i<n; i++)
 	{
-		printf("x_%d = %.1lf, ", i+1, x[i]);
+		printf("x_%d = %lf, ", i+1, x[i]);
 	}
 	printf("\n");
 }
