@@ -78,6 +78,7 @@ int main()
 
     std::vector<Employee*> B = fun(n, arr);
     res(B, n);
+    
     for(int i=0; i<n+1; ++i) 
     {
         delete B[i];

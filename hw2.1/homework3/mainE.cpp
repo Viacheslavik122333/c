@@ -117,7 +117,6 @@ int main()
 
     A.proof() ? std::cout << "Yes" << std::endl : std::cout << "No" << std::endl; 
 
-    delete nodes[0];
     delete[] N;
 
     return 0;
