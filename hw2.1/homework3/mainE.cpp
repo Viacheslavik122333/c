@@ -33,11 +33,6 @@ struct Tree
         _clear(root);
     }
 
-    // void print() 
-    // {
-    //     _printTree(root, 0, "", true);
-    // }
-
     bool proof()
     {
         return _proof(root, LLONG_MIN, LLONG_MAX);
@@ -51,21 +46,6 @@ struct Tree
         delete v;
     }
 
-    // void _printTree(Node* node, int level, const std::string& prefix, bool isLeft) 
-    // {
-    //     if (node == nullptr) return;
-
-    //     // Сначала выводим правое поддерево
-    //     _printTree(node->r, level + 1, prefix + (isLeft ? "  │   " : "      "), false);
-
-    //     // Выводим текущий узел
-    //     std::cout << prefix;
-    //     std::cout << (isLeft ? "  └─── " : "  ┌─── ");
-    //     std::cout << node->id << "(" << node->value << ")"<< std::endl;
-
-    //     // Затем выводим левое поддерево
-    //     _printTree(node->l, level + 1, prefix + (isLeft ? "      " : "  │   "), true);
-    // }
 
     bool _proof(Node* node, long long min, long long max) 
     { 
@@ -112,8 +92,6 @@ int main()
     }
 
     A.root = nodes[1];
-
-    // A.print();
 
     A.proof() ? std::cout << "Yes" << std::endl : std::cout << "No" << std::endl; 
 

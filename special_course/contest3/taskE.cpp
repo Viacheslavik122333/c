@@ -18,9 +18,6 @@ int main()
     for(int i=0; i<n; ++i){cin >> tmp1; K[i]=tmp1;}
     for(int i=0; i<m; ++i){cin >> tmp1 >> tmp2; arr[i]={tmp1, tmp2};}
 
-    
-
-
 
     return 0;
 }
