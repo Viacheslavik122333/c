@@ -8,6 +8,8 @@
 #include "ctime"
 
 namespace Treapp {
+std::mt19937 rd(time(NULL));
+    
 struct Node
 {
     int id;
@@ -24,7 +26,7 @@ struct Node
         right = nullptr;
     }
 };
-}
+
 
 struct Treap
 {
@@ -39,7 +41,7 @@ public:
 
     void insert(int x) // добавлять элемент в дерево
     {
-        int priority = rand(); // случайный приоритет
+        int priority = rd(); // случайный приоритет
         root = _insert (root, x, priority);
     }
 
@@ -179,5 +181,5 @@ private:
         _printTree(node->left, level + 1, prefix + (isLeft ? "    " : "│   "), true);
     }
 };
-
+}
 #endif

@@ -19,7 +19,7 @@ struct Node
         right = nullptr;
     };
 };
-}
+
 
 struct AVL_tree
 {
@@ -162,7 +162,7 @@ private:
         return v->left ? _findmin (v->left) : v;
     }
 
-    AVL::Node* _deletemin(AVL::Node* v) // удаление узла с минимальным эл
+    AVL::Node* _deletemin(AVL::Node* v) 
     {
         if( v->left == 0 ) return v->right;
             
@@ -206,8 +206,8 @@ private:
     {
         if (!node) return;
 
-        _Values(node->left, all_id);   
-        all_id.push_back(node->id);           
+        _Values(node->left, all_id);
+        all_id.push_back(node->id);
         _Values(node->right, all_id);  
     }
 
@@ -227,5 +227,5 @@ private:
 
     // spasite!
 };
-
+}
 #endif
