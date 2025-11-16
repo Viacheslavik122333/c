@@ -111,5 +111,8 @@ int main()
 
     if (res == 0) std::cout << "нету :(" << std::endl;  
     else std::cout << res << std::endl;
+
+    if(s == "misterloh") std::cout << "!!!! popalsya !!!!" << std::endl; 
+
     return 0;
 }

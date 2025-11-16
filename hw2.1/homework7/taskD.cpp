@@ -23,7 +23,7 @@ int main()
 
     std::vector<std::string> v(m);
     for (int i = 0; i < m; ++i) std::cin >> v[i];
-        
+    
 
     std::vector<std::vector<bool>> used(m, std::vector<bool>(n, false));
     
