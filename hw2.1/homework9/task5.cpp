@@ -15,7 +15,7 @@ ll ressol (ll a, ll p)
     }
     
     // квадратичный невычет z
-    ll z = 2;
+    ll z = 2;        
     while (pow_mod(z, (p - 1) / 2, p) == 1) ++z;
         
     ll M = S;
