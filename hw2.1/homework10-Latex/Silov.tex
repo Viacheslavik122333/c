@@ -1,0 +1,214 @@
+\documentclass[a4paper, 12pt]{article} 
+\usepackage{import}   
+
+\usepackage{cmap}            % Русский поиск в PDF документе
+
+% Корректность отображения всех шрифтов, кодировок и мат. символов
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsmath, amsthm, mathtools, scalerel}
+
+% Отображение содержания
+\usepackage{tocloft}
+
+% Вставка картинок
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{asymptote}
+% \usepackage{nicematrix}
+\usepackage{wrapfig}        % Огибание картинок текстом
+\usepackage{cancel}         % Зачёркивания
+\usepackage{indentfirst}    % Отступ у первого абзаца
+\usepackage{xcolor}         % Цвета
+\setlength{\parskip}{.5ex}  % Отступы между абзацами
+\usepackage{enumitem}       % Работа со списками
+% \usepackage{minted}       % Вставка блоков кода
+
+\usepackage{hyperref}       % гиперссылки
+\definecolor{linkcolor}{HTML}{225ae2} % Цвет ссылок
+\definecolor{urlcolor}{HTML}{225ae2} % Цвет гиперссылок
+\hypersetup{
+    pdfstartview=FitH, 
+    linkcolor=linkcolor,
+    urlcolor=urlcolor,
+    colorlinks=true}
+\setlength{\arrayrulewidth}{0.5mm} %Толщина линейки в таблицах
+\setlength{\tabcolsep}{18pt} %Разделение между столбцами в таблице
+
+% Отступы на странице
+\usepackage[left=2cm, right=1.5cm, top=2cm, bottom=2cm, bindingoffset=0]{geometry}
+
+\usepackage{etoolbox}
+\usepackage{soul}            % Разряженный текст \so{} и подчеркивание \ul{}
+%\usepackage{soulutf8}        % Поддержка UTF8 в soul
+
+\usepackage{titlesec}        % Форматирование заголовков
+\titleformat{\section}{\LARGE \bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\aug}{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\id}{\mathrm{id}}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newsavebox{\boxedalignbox}
+\newenvironment{boxedalign*}
+  {\begin{equation*}\begin{lrbox}{\boxedalignbox}$\begin{aligned}}
+  {\end{aligned}$\end{lrbox}\fbox{\usebox{\boxedalignbox}}\end{equation*}}
+
+\newcommand\tab[1][.5cm]{\hspace*{#1}}
+
+% Подписи для матриц
+\newcommand\undermat[2]{\makebox[0pt][l]{$\smash{\underbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+\newcommand\overmat[2]{\makebox[0pt][l]{$\smash{\overbrace
+{\phantom{\begin{matrix}#2\end{matrix}}}^{\text{$#1$}}}$}#2}
+
+%chktex-file 1
+% Значек "пусть"
+\newlength{\tempheight}  
+\newcommand{\Let}[0]{  
+\mathbin{\text{\settoheight{\tempheight}{\mathstrut}\raisebox{0.5\pgflinewidth}{%
+\tikz[baseline,line cap=round,line join=round] \draw (0,0) --++ (0.4em,0) --++ (0,1.5ex) --++ (-0.4em,0);
+}}}}
+
+
+\newcounter{lemcount}
+% \newcounter{thcount}
+% \newcounter{offercount}
+% \newcounter{concount}
+% \newcounter{subthcount}
+% \newcounter{defcount}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Определение}
+% \newtheorem{definitionnum}[defcount]{Определение}
+\newtheorem*{example}{Примеры}
+\newtheorem*{example1}{Пример}
+\newtheorem*{exercise}{Упражнение}
+\newtheorem*{algorithm}{Алгоритм}
+
+\theoremstyle{plain}
+\newtheorem*{theorem}{Теорема}
+% \newtheorem{theoremnum}[thcount]{Теорема}
+\newtheorem*{consequense}{Следствие}
+\newtheorem*{consequenses}{Следствия}
+% \newtheorem{consequensenum}[concount]{Следствие}
+\newtheorem*{lemma}{Лемма}
+\newtheorem{lemmanum}[lemcount]{Лемма}
+\newtheorem*{subtheorem}{Утверждение}
+% \newtheorem{subtheoremnum}[subthcount]{Утверждение}
+\newtheorem*{properties}{Свойства}
+\newtheorem*{properties1}{Свойство}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem*{offer}{Предложение}
+% \newtheorem{offernum}[offercount]{Предложение}
+
+\DeclareMathOperator*{\circledplus}{\scalerel*{\oplus}{\sum}}
+
+%chktex-file 1 %chktex-file 3 %chktex-file 8 %chktex-file 9 %chktex-file 10 %chktex-file 11 %chktex-file 12 %chktex-file 13 %chktex-file 16 %chktex-file 17 %chktex-file 18 %chktex-file 25 %chktex-file 26 %chktex-file 35 %chktex-file 36 %chktex-file 37 %chktex-file 40 %chktex-file 44 %chktex-file 45
+
+\begin{document}
+    \import{}{titlepage.tex}
+    \newpage
+    % \tab[9cm]{Студент: Молчанов Вячеслав, 208 группа}
+    \fontsize{14pt}{20pt}\selectfont
+
+    % \begin{center}
+    %     % \textbf{Теоремы Силова}
+    % \end{center}
+    % \section*{Теоремы Силова}
+    \subsection*{I Теорема Cилова}
+    \begin{theorem}
+        Пусть $G$ --- конечная группа, \ $|G| = p^sm$, где $p$ --- простое и $(p,m) = 1$. \\
+        Тогда $\exists \ H \leq G \ : \ |H| = p^s$  --- $p$-группа силова.
+    \end{theorem}
+    \begin{proof} \tab
+        \begin{enumerate}
+            \item Если $G$ --- абелева $\Longrightarrow G\simeq \langle a_1 \rangle_{p_1^{s_1}} \times ... \times \langle a_k \rangle_{p_k^{s_k}}$. Без ограничения общности считаем, что $p_1 = ... = p_t = p, \ p_{t+1},...,p_{k} \not = p$. Тогда $H = \langle a_1 \rangle_{p^{s_1}} \times ... \times \langle a_t \rangle_{p^{s_t}}$ --- искомая силовская $p$-группа \\
+            Знаем, что $p^sm = |G| = |H| \cdot |G/H|$, где  $p \nmid |G/H| \Longrightarrow |H| = p^s$ 
+            \item Если $G$ - неабелева. Индукция по $|G| = n$ \\
+            База: $n=1$ --- очевидна \\
+            Шаг: Пусть $G = Z(G) \sqcup x_1^G \sqcup ... \sqcup x_k^G$ - разложение $G$ на сопряженные классы
+            \begin{enumerate}
+                \item $\exists i = \overline{1,...,k}: p \nmid |x_i^G|$. Знаем, что $|C(x_i)| = \frac{|G|}{|x_i^G|}$. По предположению индукции в $C(x_i) \ \exists$ силовская $p$-подгруппа $H \Longrightarrow |H| = p^s$ (так как степень вхождения $p$ в порядок группы не уменьшилась), т.е. $H$ --- силовская $p$-подгруппа и для $G$;
+                \item $\forall i = \overline{1,...,k}: p \mid |x_i^G|$. Тогда $p \mid |Z(G)| \Longrightarrow |Z(G)| = p^{s_0}m_0 \ ((p, m_0) = 1)$. Так как $Z(G)$ --- абелева, по 1 случаю $\exists$ силовская $p$-подгруппа $S_0 \leq Z(G), \ |S_0| = p^{s_0}$.\\
+                По свойству центра $S_0 \leq Z(G) \Longrightarrow S_0 \unlhd G$ --- можем рассмотреть $G/S_0$.
+                Так как $|G/S_0| < |G|$, по предположению индукции $\exists$ силовская $p$-подгруппа $S \leq G/S_0$. $|G/S_0| = p^{s-s_0}m \Longrightarrow |S| = p^{s-s_0}$\\
+                Рассмотрим натуральный гомоморфизм $\pi: G \rightarrow G/S_0$, и $\tilde{S} = \pi^{-1}(S)$ --- полный прообраз $S$ при этом гомоморфизме.\\
+                $S_0 \subset \tilde{S}$, так как $\forall s_0 \in S_0: \pi(s_0) = eS_0$, причём $S_0 \unlhd G \Longrightarrow S_0 \unlhd \tilde{S}$, т.е. можем рассмотреть ограничение $\pi|_{\tilde{S}}: \tilde{S} \rightarrow \tilde{S}/S_0$. $\pi|_{\tilde{S}}$ --- натуральный гомоморфизм с ядром $S_0$ и образом $\pi(\tilde{S}) = S$.\\
+                Натуральный гомоморфизм сюръективен, а отсюда по теореме о гомоморфизме $|\tilde{S}| = |S_0|\cdot|S| = p^{s_0} \cdot p^{s-s_0} = p^s \Longrightarrow \tilde{S}$ --- искомая силовская $p$-подгруппа $G$. 
+            \end{enumerate}
+        \end{enumerate}
+    \end{proof} 
+
+
+    \subsection*{II Теорема Cилова}
+
+    \begin{theorem}
+        Пусть $G$ --- группа, $|G| = p^sm$, где $p$ --- простое, $(p, m) = 1$.\\
+        Тогда любая $p$-подгруппа группы $G$ лежит в некоторой силовской $p$-подгруппе.\\
+        Все силовские $p$-подгруппы группы $G$ сопряжены.
+    \end{theorem} 
+    \begin{proof}
+        Пусть $|G| = p^sm$, где $p$ --- простое, $(p, m) = 1$.\\
+        По $I$ теореме Силова $\exists$ силовская $p$-подгруппа $S \leq G$.\\
+        Рассмотрим $H \leq G$ - произвольную нетривиальную $p$-подгруппу (случай $H= \{e\}$ очевиден).
+
+        Рассмотрим множество $X = \{g_1S,...,g_mS\}$ смежных классов $G$ по $S$ и действие $H \curvearrowright X$, заданное по правилу $\alpha(h)g_iS = hg_iS$.
+        $$|\textup{Orb}(g_iS)| \mid |H| \Longrightarrow \left[\begin{array}{l}
+        |\textup{Orb}(g_iS)| = 1\\
+        p \mid |\textup{Orb}(g_iS)|
+        \end{array}\right. (|H| = p^m \text{по следствию из I th. Силова})$$
+        Предположим, что $\forall i = \overline{1,...,m}: p \mid |\textup{Orb}(g_iS)|$. Тогда $p \mid |X|$, так как $|X|$ --- сумма мощностей непересекающихся орбит. Однако $|X| = m$ --- взаимно просто с $p$. Противоречие.\\
+        Отсюда $\exists i = \overline{1,...,m}: |\textup{Orb}(g_iS)| = 1$, т.е. точка $g_iS$ неподвижна при $H \curvearrowright X$. Значит, $\forall h \in H\  hg_iS = g_iS \Longrightarrow h \in g_iSg_i^{-1} \Longrightarrow H \leq g_iSg_i^{-1}$. Т.к. $|g_iSg_i^{-1}| = |S|$, $g_iSg_i^{-1}$ --- силовская $p$-подгруппа, т.е. $H$ лежит в силовской $p$-подгруппе $G$.
+
+        Заметим, что в доказательстве выше подгруппа $S$ зафиксирована.\\
+        Если рассмотреть $H$ --- произвольную силовскую $p$-подгруппу $G$, то $|H| = p^s$.\\
+        Так как $H \leq g_iSg_i^{-1}$, $|g_iSg_i^{-1}| = p^s \Longrightarrow H = g_iSg_i^{-1}$ --- $p$-подгруппа сопряжена с $S$. Значит, все силовские $p$-подгруппы сопряжены.
+    \end{proof} 
+
+
+    \subsection*{III Теорема Cилова}
+
+    \begin{theorem}
+        Пусть $G$ --- группа, $|G| = p^sm$, где $p$ --- простое, $(p, m) = 1$.\\
+        Пусть $N_p$ --- число силовских $p$-подгрупп в $G$. Тогда $N_p \equiv 1(\textup{mod } p), \ N_p \mid m$.
+    \end{theorem} 
+    \begin{proof}
+        $\\$Пусть $S$ --- произвольная силовская $p$-подгруппа $G$ (хотя бы одна существует по $I$ теореме Силова). Рассмотрим $X = \{gSg^{-1} \ | \ g \in G\}$. По $II$ теореме Силова все силовские $p$-подгруппы $G$ сопряжены, а также порядок любой подгруппы вида $gSg^{-1}$ равен $|S|$, т.е. $gSg^{-1}$ --- также силовкая $p$-подгруппа. Отсюда $X$ --- множество всех силовских подгрупп $G$.\\
+        $|X| = N_p \Longrightarrow$ по утверждению 1 получаем $N_p \mid |G|$. Осталось показать, что $N_p \equiv 1(\textup{mod } p)$ (если это так, то $N_p \mid |G| = p^sm \Longrightarrow N_p \mid m$).
+
+        Рассмотрим действие $S \curvearrowright X$ сопряжениями. Очевидно, $S$ --- неподвижная точка относительно него. Также $N_p = |X| = \sum \limits_{i=1}^k |\textup{Orb}(x_i)|$. 
+        При этом:
+        $$|\textup{Orb}(x_i)| \mid |S| = p^s \Longrightarrow \left[\begin{array}{l}
+        |\textup{Orb}(x_i)| = 1\\
+        p \mid |\textup{Orb}(x_i)|
+        \end{array}\right.$$
+        Значит, достаточно показать, что $S$ --- единственная неподвижная точка относительно данного движения (тогда $|X| = \sum \limits_{i=1}^k |\textup{Orb}(x_i)| \equiv |\textup{Orb}(S)| = 1 (\textup{mod } p)$)
+
+        Допустим, что $\tilde{S}$ --- неподвижная точка $\Longrightarrow \forall g \in S \ g \tilde{S}g^{-1} = \tilde{S}$. \\
+        Рассмотрим нормализатор $N_G(\tilde{S})$. Знаем, что $\tilde{S} \subseteq N_G(\tilde{S})$, а из неподвижности точки $\tilde{S}$ имеем $S \subseteq N_G(\tilde{S})$. Также  $N_G(\tilde{S}) \leq G$, то есть степень вхождения $p$ в $|N_G(\tilde{S})|$ также равна $s$. \\
+        Значит, $S, \tilde{S}$ --- силовские $p$-подгруппы в $N_G(\tilde{S})$. Тогда по $II$ теореме Силова $S$ и $\tilde{S}$ сопряжены в $N_G(\tilde{S})$, т.е. $S = g\tilde{S}g^{-1}, g \in N_G(\tilde{S})$, а тогда по определению нормализатора $S = \tilde{S}$.\\
+        Получаем, что $S$ --- единственная неподвижная точка.
+    \end{proof} 
+    \begin{thebibliography}{}
+        \bibitem{tex} ``Алгебра, 3 семестр, лектор Куликова О.В.'', команда 208 группы, 2025, \url{https://github.com/Egorchess/Algebra-3sem/blob/master/Algebra.pdf}
+        
+    \end{thebibliography}
+
+\end{document}

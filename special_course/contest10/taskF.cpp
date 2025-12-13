@@ -52,7 +52,7 @@ public:
         build(arr, 1, 0, n-1);
     }
     
-    void update(int pos, int val) 
+    void update(int pos, int val)
     {
         upd(1, 0, n-1, pos, val);
     }
