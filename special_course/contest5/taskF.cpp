@@ -44,7 +44,7 @@ int main()
         {
             ll target = i + 1;
             if (B[i] > target) continue;
-            else if (B[i] < target) 
+            else if (B[i] < target)
             {
                 possible = false;
                 break;

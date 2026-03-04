@@ -1,0 +1,11 @@
+name like ____
+name like Ol__
+name like O__g
+name like Ser%
+name like %erg%
+name like %ey
+name like %
+name like Ser%gey
+name like Ser%y
+name like O[l-l]eg
+name like Ser[^-z]ey

@@ -18,6 +18,8 @@ struct Graph
     }
 
     std::vector<int>& operator[] (int v) {return g[v];}
+
+    int size() const { return g.size(); }
         
 };
 
@@ -31,4 +33,30 @@ int dfs (Graph &A, int v, std::vector<bool> &us)
         if (!us[u]) sm += dfs(A, u, us);
     }
     return sm; // вернули количество вершин в компоненте связности
+}
+
+int bfs (Graph &A, int v) 
+{
+    int n = A.size();
+    std::vector<bool> us(n, false);
+    std::queue<int> q;
+    int start = 0;
+    us[start] = true;
+    q.push(start);
+    
+    while (!q.empty())
+    {
+        int v = q.front();
+        q.pop();
+        
+        // Обрабатываем соседей
+        for (int w : A[v])
+        {
+            if (!us[w])
+            {
+                us[w] = true;
+                q.push(w);
+            }
+        }
+    }
 }

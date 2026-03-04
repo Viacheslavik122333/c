@@ -44,7 +44,7 @@ int main()
     for (int i = 0; i < n; ++i) if (B[i].first != '?' && B[i].second == 1) t_l[B[i].first - 'a'].push_back(i);
 
 
-    for (int i = 0; i < n; ++i) 
+    for (int i = 0; i < n; ++i)
     {
         if (A[i].second == 1 && A[i].first != '?') 
         {

@@ -46,7 +46,7 @@ int main()
             total_matches += n * boxes[i].matches;
             n = 0;
         } 
-        else 
+        else
         {
             total_matches += boxes[i].count * boxes[i].matches;
             n -= boxes[i].count;

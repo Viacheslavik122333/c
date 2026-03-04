@@ -121,17 +121,17 @@ private:
 
         else // ура, нашли что надо удалить
         {
-            Node* w = v->left;
+            Node* l = v->left;
             Node* r = v->right;
             delete v;
 
-            if( r==nullptr ) return w; // тогда w это просто листок
+            if( r==nullptr ) return l; // тогда w это просто листок
 
             Node* min = _findmin(r);
 
             min->right = _deletemin(r);
 
-            min->left = w;
+            min->left = l;
 
             return _balance(min);
         }

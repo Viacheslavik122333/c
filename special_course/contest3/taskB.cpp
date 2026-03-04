@@ -28,7 +28,7 @@ int main()
         auto left_it = lower_bound(A.begin(), A.end(), l);
         auto right_it = upper_bound(A.begin(), A.end(), r);
         
-        if(left_it == right_it) 
+        if(left_it == right_it)
         {
             cout << "0\n";
             continue;

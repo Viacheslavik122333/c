@@ -1,3 +1,10 @@
+#include <iostream>
+#include <fstream>
+
+using std:: cout;
+using std:: cin;
+using std:: endl;
+
 struct Node
 {
     int data;
