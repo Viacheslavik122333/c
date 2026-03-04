@@ -1,2 +1,0 @@
-* where name like %pidor%
-name, phone where name not like ohuyaro_ and phone > 500
